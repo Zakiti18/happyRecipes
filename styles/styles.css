@@ -1,0 +1,16 @@
+body{
+    background-color: #E8E9EB;
+}
+
+.container{
+    background-color: #E4B363;
+    padding-right: 0!important;
+}
+
+.navbar{
+    background-color: #EF6461!important;
+}
+
+#categories, #slideshow, #description{
+    border: 1px solid black;
+}
