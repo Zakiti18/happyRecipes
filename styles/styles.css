@@ -1,16 +1,73 @@
+/*
+happyRecipes/styles/styles.css
+Cesar Escalona and Phillip Ball
+04/30/2021
+This is style sheet for our 328 project
+*/
+
+/* our styles */
+
 body{
-    background-color: #E8E9EB;
+    background-color: #F1F0EA;
 }
 
 .container{
-    background-color: #E4B363;
-    padding-right: 0!important;
+    background-color: #474448;
 }
 
 .navbar{
-    background-color: #EF6461!important;
+    background-color: #F1F0EA!important;
 }
 
 #categories, #slideshow, #description{
-    border: 1px solid black;
+    border: 1px solid #00000038;
+    border-radius: 5px;
+}
+
+/* added bootstrap styles */
+
+:root {
+    --jumbotron-padding-y: 3rem;
+}
+
+.jumbotron {
+    padding-top: var(--jumbotron-padding-y);
+    padding-bottom: var(--jumbotron-padding-y);
+    margin-bottom: 0;
+    background-color: #fff;
+}
+@media (min-width: 768px) {
+    .jumbotron {
+        padding-top: calc(var(--jumbotron-padding-y) * 2);
+        padding-bottom: calc(var(--jumbotron-padding-y) * 2);
+    }
+}
+
+.jumbotron p:last-child {
+    margin-bottom: 0;
+}
+
+.jumbotron-heading {
+    font-weight: 300;
+}
+
+.jumbotron .container {
+    max-width: 40rem;
+}
+
+footer {
+    padding-top: 1rem;
+}
+
+footer div {
+    background-color: #F1F0EA!important;
+}
+
+footer p {
+    margin-bottom: .25rem;
+    background-color: #F1F0EA;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
