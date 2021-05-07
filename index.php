@@ -25,6 +25,20 @@ $f3->route('GET /', function(){
     echo $view->render('views/home.html');
 });
 
+// Weekly recipes sign up route
+$f3->route('GET /form', function(){
+    // Display the form for people to sign up for weekly recipes
+    $view = new Template();
+    echo $view->render('views/form.html');
+});
+
+// Weekly recipes sign up route
+$f3->route('GET /formSummary', function(){
+    // Display the summary of the form for people signing up for weekly recipes
+    $view = new Template();
+    echo $view->render('views/formSummary.html');
+});
+
 // Categories route
 $f3->route('GET /categories', function(){
     // Display the categories page
@@ -32,11 +46,27 @@ $f3->route('GET /categories', function(){
     echo $view->render('views/categories.html');
 });
 
-// Weekly recipes sign up route
-$f3->route('GET /form', function(){
-    // Display the form for people to sign up for weekly recipes
+// Specific category routes
+
+// Breakfast route
+$f3->route('GET /breakfast', function(){
+    // Display a specific category page
     $view = new Template();
-    echo $view->render('views/form.html');
+    echo $view->render('views/breakfast.html');
+});
+
+// Lunch route
+$f3->route('GET /lunch', function(){
+    // Display a specific category page
+    $view = new Template();
+    echo $view->render('views/lunch.html');
+});
+
+// dinner route
+$f3->route('GET /dinner', function(){
+    // Display a specific category page
+    $view = new Template();
+    echo $view->render('views/dinner.html');
 });
 
 // Run Fat-Free
