@@ -26,7 +26,24 @@ $f3->route('GET /', function(){
 });
 
 // Weekly recipes sign up route
-$f3->route('GET /form', function(){
+$f3->route('GET|POST /form', function(){
+    // If the form has been submitted, add the data to session
+    // and send the user to the next page
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $_SESSION['fname'] = $_POST['fname'];
+        $_SESSION['lname'] = $_POST['lname'];
+        $_SESSION['email'] = $_POST['email'];
+        $_SESSION['address'] = $_POST['address'];
+        $_SESSION['city'] = $_POST['city'];
+        $_SESSION['state'] = $_POST['state'];
+        $_SESSION['zip'] = $_POST['zip'];
+        $_SESSION['country'] = $_POST['country'];
+        $_SESSION['phoneNum'] = $_POST['phoneNum'];
+        $_SESSION['fCat'] = $_POST['fCat'];
+        $_SESSION['pref'] = $_POST['pref'];
+        header('location: formSummary');
+    }
+
     // Display the form for people to sign up for weekly recipes
     $view = new Template();
     echo $view->render('views/form.html');
