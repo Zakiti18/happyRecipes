@@ -11,6 +11,7 @@ error_reporting(E_ALL);
 
 // Require autoload file
 require_once ('vendor/autoload.php');
+require_once('model/validation.php');
 
 // Start a session
 session_start();
@@ -26,23 +27,106 @@ $f3->route('GET /', function(){
 });
 
 // Weekly recipes sign up route
-$f3->route('GET|POST /form', function(){
+$f3->route('GET|POST /form', function($f3){
+    // Reinitialize the session array
+    $_SESSION = array();
+
+    // initialize all variables to store user input
+    $userFName = "";
+    $userLName = "";
+    $userEmail = "";
+    $userSwitch = "";
+    $userAddress = "";
+    $userCity = "";
+    $userState = "";
+    $userZip = "";
+    $userCountry = "";
+    $userPhone = "";
+
     // If the form has been submitted, add the data to session
     // and send the user to the next page
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $_SESSION['fname'] = $_POST['fname'];
-        $_SESSION['lname'] = $_POST['lname'];
-        $_SESSION['email'] = $_POST['email'];
-        $_SESSION['address'] = $_POST['address'];
+
+        // First Name
+        $userFName = $_POST['fname'];
+        if (validName($userFName)) {
+            $_SESSION['fname'] = $userFName;
+        } else {
+            $f3->set('errors["fName"]', 'Please enter a valid first name');
+        }
+
+        // Last Name
+        $userLName = $_POST['lname'];
+        if (validName($userLName)) {
+            $_SESSION['lname'] = $userLName;
+        } else {
+            $f3->set('errors["lName"]', 'Please enter a valid last name');
+        }
+
+        // Email
+        $userEmail = $_POST['email'];
+        if (validEmail($userEmail)) {
+            $_SESSION['email'] = $userEmail;
+        } else {
+            $f3->set('errors["Email"]', 'Please enter a valid email that contains "@" and ".com"');
+        }
+
+        // Phone number
+        $userPhone = $_POST['phoneNum'];
+        if (validPhone($userPhone)) {
+            $_SESSION['phoneNum'] = $userPhone;
+        } else {
+            $f3->set('errors["PhoneNum"]', 'Please enter a valid phone number with dashes E.g. 253-123-4567');
+        }
+
+        // Save the users switch choice
+        $userSwitch = $_POST['switch'];
+        if(validSwitch($userSwitch)) {
+            $_SESSION['switch'] = $userSwitch;
+        }
+
+        // Address
+        $userAddress = $_POST['address'];
+        if($userSwitch != "") {
+            if (validAddress($userAddress)) {
+                $_SESSION['address'] = $userAddress;
+
+            } else {
+                $f3->set('errors["Address"]', 'Please enter a valid address');
+            }
+        } else {
+            $_SESSION['address'] = $userAddress;
+        }
+
+
+
+
+        //$_SESSION['fname'] = $_POST['fname'];
+        //$_SESSION['lname'] = $_POST['lname'];
+        //$_SESSION['email'] = $_POST['email'];
+        //$_SESSION['address'] = $_POST['address'];
         $_SESSION['city'] = $_POST['city'];
         $_SESSION['state'] = $_POST['state'];
         $_SESSION['zip'] = $_POST['zip'];
         $_SESSION['country'] = $_POST['country'];
-        $_SESSION['phoneNum'] = $_POST['phoneNum'];
+        //$_SESSION['phoneNum'] = $_POST['phoneNum'];
         $_SESSION['fCat'] = $_POST['fCat'];
         $_SESSION['pref'] = $_POST['pref'];
-        header('location: formSummary');
-    }
+
+        //If the error array is empty, redirect to summary page
+        if (empty($f3->get('errors'))) {
+            // Redirect
+            header('location: formSummary');
+        }
+    } // End of validation if form is submitted
+
+    // Add the data to the hive
+    $f3->set('userFName', $userFName);
+    $f3->set('userLName', $userLName);
+    $f3->set('Email', $userEmail);
+    $f3->set('phoneNum', $userPhone);
+    $f3->set('Switch', $userSwitch);
+    $f3->set('addy', $userAddress);
 
     // Display the form for people to sign up for weekly recipes
     $view = new Template();

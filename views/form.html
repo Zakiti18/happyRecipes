@@ -22,25 +22,58 @@ This is the form page for our 328 project
 
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label for="fname"><strong>First Name</strong></label>
-                            <input type="text" class="form-control" id="fname" name="fname">
+                            <label><strong>First Name</strong></label>
+                            <input type="text" class="form-control" id="fname" name="fname"
+                            value="{{ @userFName }}">
+                            <check if="{{ isset(@errors['fName']) }}">
+                                <!-- add styles -->
+                                <span class="err">{{ @errors['fName'] }}</span>
+                            </check>
                            <!-- Use this for Validation js <span class="err" id="err-fname">Please enter a first name</span> -->
                         </div> <!-- End of First Name  -->
 
                         <div class="form-group col-md-6">
-                            <label for="lname"><strong>Last Name</strong></label>
-                            <input type="text" class="form-control" id="lname" name="lname"><br>
+                            <label><strong>Last Name</strong></label>
+                            <input type="text" class="form-control" id="lname" name="lname"
+                                   value="{{ @userLName }}">
+                            <check if="{{ isset(@errors['lName']) }}">
+                                <!-- add styles -->
+                                <span class="err">{{ @errors['lName'] }}</span>
+                            </check>
+                            <br>
                         </div> <!-- End of Last Name  -->
 
                         <div class="form-group col-md-12">
                             <label for="email"><strong>Email</strong></label>
                             <input type="email" class="form-control" id="email"
-                                   placeholder="someone@domain.com" name="email"><br>
+                                   placeholder="someone@domain.com" name="email"
+                                   value="{{ @Email }}">
+                            <check if="{{ isset(@errors['Email']) }}">
+                                <!-- add styles -->
+                                <span class="err">{{ @errors['Email'] }}</span>
+                            </check>
+                            <br>
                         </div> <!-- End of Email  -->
+
+                        <div class="form-group">
+                            <div class="form-check form-switch">
+                                <label class="form-check-label" for="switch">
+                                    <input class="form-check-input" type="checkbox" id="switch"
+                                           value="{{ @Switch }}">
+
+                                    <strong>Send Me Top Weekly Recipes by Mail</strong></label>
+                            </div><br>
+                        </div> <!-- End of Form Switch  -->
 
                         <div class="form-group col-md-12">
                             <label for="address"><strong>Address</strong></label>
-                            <input type="text" class="form-control" id="address" name="address"><br>
+                            <input type="text" class="form-control" id="address" name="address"
+                            value="{{ @userAddress }}">
+                            <check if="{{ isset(@errors['Address']) }}">
+                                <!-- add styles -->
+                                <span class="err">{{ @errors['Address'] }}</span>
+                            </check>
+                            <br>
                         </div> <!-- End of Address  -->
 
                         <div class="form-group-row col-md-4">
@@ -66,8 +99,12 @@ This is the form page for our 328 project
                         <div class="form-group col-md-6">
                             <label for="phoneNum"><strong>Phone Number</strong></label>
                             <input type="tel" class="form-control" id="phoneNum" name="phoneNum"
-                                   pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
-                            <p class="text-muted">Please enter with dashes e.g 253-123-4567</p>
+                                   pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="{{ @phoneNum }}">
+                            <p class="text-muted">Phone number above must match this format: 123-456-7890</p>
+                            <check if="{{ isset(@errors['PhoneNum']) }}">
+                                <!-- add styles -->
+                                <span class="err">{{ @errors['PhoneNum'] }}</span>
+                            </check>
                         </div> <!-- End of Phone Number  -->
 
                         <div class="form-group col-md-6"><br>
