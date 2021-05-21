@@ -81,13 +81,13 @@ $f3->route('GET|POST /form', function($f3){
 
         // Save the users switch choice
         $userSwitch = $_POST['switch'];
-        if(validSwitch($userSwitch)) {
-            $_SESSION['switch'] = $userSwitch;
+        if(isset($userSwitch)){
+            $_SESSION['switch'] = true;
         }
 
         // Address
         $userAddress = $_POST['address'];
-        if($userSwitch != "") {
+        if(isset($userSwitch)) {
             if (validAddress($userAddress)) {
                 $_SESSION['address'] = $userAddress;
 

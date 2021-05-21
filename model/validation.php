@@ -27,10 +27,12 @@ function validEmail($email)
 }
 
 function validSwitch($switch) {
-    if($switch != ""){
-        return $switch;
+    // if the switch is flipped, return true
+    if(isset($switch)){
+        return true;
     }
-    //return !empty($switch);
+    // otherwise return false
+    return false;
 }
 
 function validAddress($address)
