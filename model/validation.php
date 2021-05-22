@@ -26,13 +26,15 @@ function validEmail($email)
     }
 }
 
+// This function checks to see if the user clicked the recipes by mail switch
 function validSwitch($switch) {
-    if($switch != ""){
-        return $switch;
+    if(isset($switch)){
+        return true;
     }
-    //return !empty($switch);
+    return false;
 }
 
+// This function checks to see if an address is required based on the switch
 function validAddress($address)
 {
     if($address != ""){
@@ -41,50 +43,53 @@ function validAddress($address)
     else {
         return !empty($address);
     }
-
 }
 
+// This function checks to see if a city is required based on the switch
 function validCity($city)
 {
-    if($city == ""){
-        return empty($city);
+    if($city != ""){
+        return $city;
+    } else {
+        return !empty($city);
     }
-
 }
 
+// This function checks to see if a state is required based on the switch
 function validState($state)
 {
-    if($state == ""){
-        return empty($state);
+    if($state != ""){
+        return $state;
+    } else {
+        return !empty($state);
     }
-
 }
 
+// This function checks to see if a zip code is required based on the switch
 function validZip($zip)
 {
-    if($zip == ""){
-        return empty($zip);
+    if($zip != ""){
+        return $zip;
+    } else {
+        return !empty($zip);
     }
-
 }
 
-function validCountry($country, $check)
+// This function checks to see if a country is required based on the switch
+function validCountry($country)
 {
-    if($country == ""){
-        return empty($country);
-    }
-    if($check == true){
+    if($country != ""){
+        return $country;
+    } else {
         return !empty($country);
     }
-
 }
 
 // This function checks to see that a phone number is valid
 function validPhone($phoneNum)
 {
     if ($phoneNum == "") {
-        // REMOVED ! BEFORE EMPTY FOR TEST PURPOSES!! PLEASE ADD BACK IN WHEN DONE TESTING
-        return empty($phoneNum);
+        return !empty($phoneNum);
     } else if (ctype_digit($phoneNum)) {
         return $phoneNum;
     }

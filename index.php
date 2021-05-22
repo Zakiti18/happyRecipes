@@ -81,35 +81,74 @@ $f3->route('GET|POST /form', function($f3){
 
         // Save the users switch choice
         $userSwitch = $_POST['switch'];
-        if(validSwitch($userSwitch)) {
-            $_SESSION['switch'] = $userSwitch;
+        if(isset($userSwitch)){
+            $_SESSION['switch'] = true;
         }
 
         // Address
         $userAddress = $_POST['address'];
-        if($userSwitch != "") {
+        if(isset($userSwitch)) {
             if (validAddress($userAddress)) {
                 $_SESSION['address'] = $userAddress;
-
             } else {
-                $f3->set('errors["Address"]', 'Please enter a valid address');
+                $f3->set('errors["Address"]', 'Please enter a valid Address');
             }
         } else {
             $_SESSION['address'] = $userAddress;
         }
 
+        // City
+        $userCity = $_POST['city'];
+        if(isset($userSwitch)) {
+            if (validCity($userCity)) {
+                $_SESSION['city'] = $userCity;
 
+            } else {
+                $f3->set('errors["City"]', 'Please enter a valid City');
+            }
+        } else {
+            $_SESSION['City'] = $userCity;
+        }
 
+        // State
+        $userState = $_POST['state'];
+        if(isset($userSwitch)) {
+            if (validState($userState)) {
+                $_SESSION['state'] = $userState;
 
-        //$_SESSION['fname'] = $_POST['fname'];
-        //$_SESSION['lname'] = $_POST['lname'];
-        //$_SESSION['email'] = $_POST['email'];
-        //$_SESSION['address'] = $_POST['address'];
-        $_SESSION['city'] = $_POST['city'];
-        $_SESSION['state'] = $_POST['state'];
-        $_SESSION['zip'] = $_POST['zip'];
-        $_SESSION['country'] = $_POST['country'];
-        //$_SESSION['phoneNum'] = $_POST['phoneNum'];
+            } else {
+                $f3->set('errors["State"]', 'Please enter a valid State');
+            }
+        } else {
+            $_SESSION['State'] = $userState;
+        }
+
+        // Zip
+        $userZip = $_POST['zip'];
+        if(isset($userSwitch)) {
+            if (validZip($userZip)) {
+                $_SESSION['zip'] = $userZip;
+
+            } else {
+                $f3->set('errors["Zip"]', 'Please enter a valid Zip Code');
+            }
+        } else {
+            $_SESSION['Zip'] = $userZip;
+        }
+
+        // Country
+        $userCountry = $_POST['country'];
+        if(isset($userSwitch)) {
+            if (validCountry($userCountry)) {
+                $_SESSION['country'] = $userCountry;
+
+            } else {
+                $f3->set('errors["Country"]', 'Please enter a valid Country');
+            }
+        } else {
+            $_SESSION['Country'] = $userCountry;
+        }
+
         $_SESSION['fCat'] = $_POST['fCat'];
         $_SESSION['pref'] = $_POST['pref'];
 
@@ -126,7 +165,11 @@ $f3->route('GET|POST /form', function($f3){
     $f3->set('Email', $userEmail);
     $f3->set('phoneNum', $userPhone);
     $f3->set('Switch', $userSwitch);
-    $f3->set('addy', $userAddress);
+    $f3->set('Address', $userAddress);
+    $f3->set('City', $userCity);
+    $f3->set('State', $userState);
+    $f3->set('Zip', $userZip);
+    $f3->set('Country', $userCountry);
 
     // Display the form for people to sign up for weekly recipes
     $view = new Template();

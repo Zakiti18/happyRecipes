@@ -24,12 +24,12 @@ This is the form page for our 328 project
                         <div class="form-group col-md-6">
                             <label><strong>First Name</strong></label>
                             <input type="text" class="form-control" id="fname" name="fname"
-                            value="{{ @userFName }}">
+                                   value="{{ @userFName }}">
                             <check if="{{ isset(@errors['fName']) }}">
                                 <!-- add styles -->
                                 <span class="err">{{ @errors['fName'] }}</span>
                             </check>
-                           <!-- Use this for Validation js <span class="err" id="err-fname">Please enter a first name</span> -->
+                            <!-- Use this for Validation js <span class="err" id="err-fname">Please enter a first name</span> -->
                         </div> <!-- End of First Name  -->
 
                         <div class="form-group col-md-6">
@@ -58,8 +58,8 @@ This is the form page for our 328 project
                         <div class="form-group">
                             <div class="form-check form-switch">
                                 <label class="form-check-label" for="switch">
-                                    <input class="form-check-input" type="checkbox" id="switch"
-                                           value="{{ @Switch }}">
+                                    <input class="form-check-input" type="checkbox" name="switch" id="switch"
+                                    <check if="{{ @Switch }}">checked="checked"</check>>
 
                                     <strong>Send Me Top Weekly Recipes by Mail</strong></label>
                             </div><br>
@@ -68,7 +68,7 @@ This is the form page for our 328 project
                         <div class="form-group col-md-12">
                             <label for="address"><strong>Address</strong></label>
                             <input type="text" class="form-control" id="address" name="address"
-                            value="{{ @userAddress }}">
+                                   value="{{ @Address }}">
                             <check if="{{ isset(@errors['Address']) }}">
                                 <!-- add styles -->
                                 <span class="err">{{ @errors['Address'] }}</span>
@@ -78,22 +78,43 @@ This is the form page for our 328 project
 
                         <div class="form-group-row col-md-4">
                             <label for="city"><strong>City</strong></label>
-                            <input type="text" class="form-control" id="city" name="city">
+                            <input type="text" class="form-control" id="city" name="city"
+                                   value="{{ @City }}">
+                            <check if="{{ isset(@errors['City']) }}">
+                                <!-- add styles -->
+                                <span class="err">{{ @errors['City'] }}</span>
+                            </check>
                         </div> <!-- End of City  -->
 
                         <div class="form-group col-md-4">
                             <label for="state"><strong>State</strong></label>
-                            <input type="text" class="form-control" id="state" name="state">
+                            <input type="text" class="form-control" id="state" name="state"
+                                   value="{{ @State }}">
+                            <check if="{{ isset(@errors['State']) }}">
+                                <!-- add styles -->
+                                <span class="err">{{ @errors['State'] }}</span>
+                            </check>
                         </div> <!-- End of State  -->
 
                         <div class="form-group col-md-4">
                             <label for="zip"><strong>Zip</strong></label>
-                            <input type="text" class="form-control" id="zip" name="zip"><br>
+                            <input type="text" class="form-control" id="zip" name="zip"
+                                   value="{{ @Zip }}">
+                            <check if="{{ isset(@errors['Zip']) }}">
+                                <!-- add styles -->
+                                <span class="err">{{ @errors['Zip'] }}</span>
+                            </check>
+                            <br>
                         </div> <!-- End of Zip  -->
 
                         <div class="form-group col-md-6">
                             <label for="country"><strong>Country</strong></label>
-                            <input type="text" class="form-control" id="country" name="country">
+                            <input type="text" class="form-control" id="country" name="country"
+                                   value="{{ @Country }}">
+                            <check if="{{ isset(@errors['Country']) }}">
+                                <!-- add styles -->
+                                <span class="err">{{ @errors['Country'] }}</span>
+                            </check>
                         </div> <!-- End of Country  -->
 
                         <div class="form-group col-md-6">
