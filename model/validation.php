@@ -27,7 +27,8 @@ function validEmail($email)
 }
 
 // This function checks to see if the user clicked the recipes by mail switch
-function validSwitch($switch) {
+function validSwitch($switch)
+{
     // if the switch is flipped, return true
     if(isset($switch)){
         return true;

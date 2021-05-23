@@ -14,10 +14,11 @@ This is the home page for our 328 project
     <div class="container px-0">
         <section class="jumbotron text-center pt-2 pb-4">
             <h1 class="jumbotron-heading">Welcome to Happy Recipes</h1>
-            <p class="lead text-muted">Here at <strong>Happy Recipes</strong> we believe that eating good and staying healthy is critical ---THIS NEEDS WORK!</p>
+            <p class="lead text-muted">Here at <strong>Happy Recipes</strong> we want to provide the best instructions
+            to cook amazing dishes!</p>
             <p>
                 <a href="categories" class="btn btn-primary my-2">Categories Of Recipes</a>
-                <a href="form" class="btn btn-secondary my-2">Sign Up To Receive Weekly Recipes</a>
+                <a href="form" class="btn btn-secondary my-2">Receive Weekly Recipes</a>
             </p>
             <img src="images/randomFood1.jpg" alt="plenty of food">
         </section>
@@ -26,55 +27,212 @@ This is the home page for our 328 project
     <!-- Recipe Cards -->
     <div class="container bg-light pt-4">
 
-        <!-- Cards Row 1 -->
-        <div class="row">
+        <!-- Card Group -->
+        <div class="card-group">
+
             <!-- Card 1 -->
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                    <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                            </div>
-                            <small class="text-muted">9 mins</small>
-                        </div>
-                    </div>
+            <div class="card text-center w-25 mx-1">
+                <img class="card-img-top" src="images/SloppyJoe.jpg" alt="sloppy joes">
+                <div class="card-body">
+                    <h5 class="card-title">Ballpark Style Sloppy Joes</h5>
+                    <p class="card-text">
+                        Prep: 10min<br>
+                        Cook: 30min<br>
+                        Calories: 890<br>
+                        Feeds: 2
+                    </p>
+                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#sloppyJoe">See the Recipe!</button>
                 </div>
             </div> <!-- Card 1 END -->
-            <!-- Card 2 -->
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                    <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                            </div>
-                            <small class="text-muted">9 mins</small>
+            <!-- Card 1 Modal -->
+            <div class="modal fade" id="sloppyJoe" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Ballpark Style Sloppy Joes with Mozzarella Cheese, Green Pepper & Potato Wedges</h5>
+                            <button type="button" class="close rounded-circle" data-dismiss="modal">
+                                <span>X</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <img class="rounded w-100 h-100 mb-2" src="images/SloppyJoe.jpg" alt="sloppy joes">
+                            <h6>Description:</h6>
+                            <p>Tired of the same ol' Sloppy Joes that ma' makes? Us too, these Ballpark Style Sloppy
+                            Joes are the real deal! We'll show you how to create an amazing ketchup and mustard spiked
+                                sauce that will bring back the best memories of your childhood.</p>
+                            <hr>
+                            <h6>Ingredients:</h6>
+                            <ul>
+                                <li>12oz of Yukon Gold Potatoes</li>
+                                <li>1 Yellow Onion</li>
+                                <li>1 Green Pepper</li>
+                                <li>1 Clove of Garlic</li>
+                                <li>2TBSP of Ketchup</li>
+                                <li>2tsp of Dijon Mustard</li>
+                                <li>6ml Beef Stock Concentrate</li>
+                                <li>6ml Ponzu Sauce</li>
+                                <li>1TBSP Cornstarch</li>
+                                <li>10oz Ground Beef</li>
+                                <li>1/2 cup Mozzarella Cheese</li>
+                                <li>2 Potato Buns</li>
+                            </ul>
+                            <hr>
+                            <h6>Steps:</h6>
+                            <ol>
+                                <li>Wash potatoes and cut into 1/2 inch wedges</li>
+                                <li>Toss potatoes on a baking sheet with salt and pepper and a drizzle of olive oil</li>
+                                <li>Roast on top rack for 20-25 mins</li>
+                                <li>Thinly slice the green pepper, half the onion and peel and mince garlic</li>
+                                <li>Combine ketchup, mustard, stock, ponzu, cornstarch and 1/3 cup of water in a small
+                                bowl</li>
+                                <li>Cook veggies over medium to high heat for 4-6 minutes</li>
+                                <li>Cook beef in medium to high heat for 4-6 minutes and add in garlic and sauce</li>
+                                <li>Drizzle mozzarella over the beef until it melts, toast the buns</li>
+                                <li>Place beef and veggies inside the buns and place on a plate with potato wedges and enjoy!</li>
+                            </ol>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
+                </div>
+            </div> <!-- Card 1 Modal END -->
+
+
+            <!-- Card 2 -->
+            <div class="card text-center w-25 mx-1">
+                <img class="card-img-top" src="images/tmpDish.jpg" alt="penne dish">
+                <div class="card-body">
+                    <h5 class="card-title">Turkey Meatball Penne</h5>
+                    <p class="card-text">
+                        Prep: 5min<br>
+                        Cook: 20min<br>
+                        Calories: 870<br>
+                        Feeds: 2
+                    </p>
+                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#tmpDish">See the Recipe!</button>
                 </div>
             </div> <!-- Card 2 END -->
-            <!-- Card 3 -->
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                    <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                            </div>
-                            <small class="text-muted">9 mins</small>
+            <!-- Card 2 Modal -->
+            <div class="modal fade" id="tmpDish" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Turkey Meatball Penne with Tomato Cream Sauce and Parmesan</h5>
+                            <button type="button" class="close rounded-circle" data-dismiss="modal">
+                                <span>X</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <img class="rounded w-100 h-100 mb-2" src="images/tmpDish.jpg" alt="penne dish">
+                            <h6>Description:</h6>
+                            <p>It looks like it costs a pretty Penne! This amazing dish will make you feel like
+                            a champion. If you don't try this recipe, it will haunt you daily. With a cook time
+                                of only 20 minutes, we can assure you that you'll be satisfied and getting back to
+                            your busy life in no time!</p>
+                            <hr>
+                            <h6>Ingredients:</h6>
+                            <ul>
+                                <li>1 Shallot</li>
+                                <li>8oz Pre Cooked Meatballs</li>
+                                <li>6oz of Penne Pasta</li>
+                                <li>1 Clove of Garlic</li>
+                                <li>4oz of Cream Sauce Base</li>
+                                <li>1TBSP of Italian Seasoning</li>
+                                <li>1/4 cup of Parmesan Cheese</li>
+                                <li>1tsp of Chili Flakes</li>
+                                <li>3oz of Tomato Paste</li>
+                            </ul>
+                            <hr>
+                            <h6>Steps:</h6>
+                            <ol>
+                                <li>Boil a large pot of salted water, peel and mince shallot and garlic</li>
+                                <li>Brown the meatballs in a pan with a drizzle of olive oil for 3-5 mins</li>
+                                <li>Cook pasta in large pot for 9-12 mins</li>
+                                <li>Combine shallot, garlic, italian seasoning, chili flakes and tomato paste with 2TBSP
+                                of butter in a pan over medium heat</li>
+                                <li>Add cream sauce and parmesan to the pan for 2-3 mins and season with salt and pepper</li>
+                                <li>Stir in meatballs and penne into pan with sauce</li>
+                                <li>Top with a pinch of parmesan cheese and serve!</li>
+                            </ol>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
+            </div> <!-- Card 2 Modal END -->
+
+
+            <!-- Card 3 -->
+            <div class="card text-center w-25 mx-1">
+                <img class="card-img-top" src="images/Tostadas.jpg" alt="tostada dish">
+                <div class="card-body">
+                    <h5 class="card-title">Beef & Cheese Tostadas</h5>
+                    <p class="card-text">
+                        Prep: 10min<br>
+                        Cook: 40min<br>
+                        Calories: 960<br>
+                        Feeds: 2
+                    </p>
+                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#Tostadas">See the Recipe!</button>
+                </div>
             </div> <!-- Card 3 END -->
-        </div> <!-- Cards Row 1 END -->
-    </div> <!-- Recipe Cards END -->
+            <!-- Card 3 Modal -->
+            <div class="modal fade" id="Tostadas" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Beef & Cheese Tostadas with green peppers, tomato salsa and hot sauce crema</h5>
+                            <button type="button" class="close rounded-circle" data-dismiss="modal">
+                                <span>X</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <img class="rounded w-100 h-100 mb-2" src="images/Tostadas.jpg" alt="tostada dish">
+                            <h6>Description:</h6>
+                            <p>These Tostadas are nothing like the food at your local Mexican restaurant.
+                            These are high quality, great tasting, round UFO's of awesomeness! We bet you can't eat just one, no
+                            really we bet you $25 dollars you can't eat just one! (Sign up to receive weekly recipes for a chance to win a
+                                $25 dollar giftcard, restrictions apply)</p>
+                            <hr>
+                            <h6>Ingredients:</h6>
+                            <ul>
+                                <li>1 Roma Tomato</li>
+                                <li>1/4oz of Cilantro</li>
+                                <li>1 Yellow Onion</li>
+                                <li>1 Lime</li>
+                                <li>1 Green Pepper</li>
+                                <li>4TBSP of Sour Cream</li>
+                                <li>6ml Beef Stock Concentrate</li>
+                                <li>1tsp of Hot Sauce</li>
+                                <li>1TBSP of Southwest Spice Blend</li>
+                                <li>10oz Ground Beef</li>
+                                <li>1tsp of Chili Powder</li>
+                                <li>6 Flour Tortillas</li>
+                                <li>1/2cup of Mexican Cheese Blend</li>
+                            </ul>
+                            <hr>
+                            <h6>Steps:</h6>
+                            <ol>
+                                <li>Chop tomato, cilantro, onion, lime, and green pepper</li>
+                                <li>Combine tomato, cilantro, sour cream, onion, juice from the lime, salt, pepper and hot sauce into
+                                a small bowl</li>
+                                <li>Cook beef in a pan for 4-5 mins with southwest spice chili powder and a pinch of salt</li>
+                                <li>Once the beef is browned, add in stock concentrate, green pepper, sliced onion, and a pinch of salt</li>
+                                <li>Bake tortillas with some olive oil on a baking sheet for 4-5 mins</li>
+                                <li>Load tortillas with beef, Mexican cheese, salsa crema and remaining lime juice and enjoy!</li>
+                            </ol>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- Card 3 Modal END -->
+
+        </div><br> <!-- Cards Group END -->
+    </div> <!-- Container END -->
 </main> <!-- Main END -->
 
 <include href="views/footer.html" />
