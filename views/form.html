@@ -27,7 +27,7 @@ This is the form page for our 328 project
                                    value="{{ @userFName }}">
                             <check if="{{ isset(@errors['fName']) }}">
                                 <!-- add styles -->
-                                <span class="err">{{ @errors['fName'] }}</span>
+                                <span class="err text-danger">{{ @errors['fName'] }}</span>
                             </check>
                             <!-- Use this for Validation js <span class="err" id="err-fname">Please enter a first name</span> -->
                         </div> <!-- End of First Name  -->
@@ -38,7 +38,7 @@ This is the form page for our 328 project
                                    value="{{ @userLName }}">
                             <check if="{{ isset(@errors['lName']) }}">
                                 <!-- add styles -->
-                                <span class="err">{{ @errors['lName'] }}</span>
+                                <span class="err text-danger">{{ @errors['lName'] }}</span>
                             </check>
                             <br>
                         </div> <!-- End of Last Name  -->
@@ -50,7 +50,7 @@ This is the form page for our 328 project
                                    value="{{ @Email }}">
                             <check if="{{ isset(@errors['Email']) }}">
                                 <!-- add styles -->
-                                <span class="err">{{ @errors['Email'] }}</span>
+                                <span class="err text-danger">{{ @errors['Email'] }}</span>
                             </check>
                             <br>
                         </div> <!-- End of Email  -->
@@ -71,7 +71,7 @@ This is the form page for our 328 project
                                    value="{{ @Address }}">
                             <check if="{{ isset(@errors['Address']) }}">
                                 <!-- add styles -->
-                                <span class="err">{{ @errors['Address'] }}</span>
+                                <span class="err text-danger">{{ @errors['Address'] }}</span>
                             </check>
                             <br>
                         </div> <!-- End of Address  -->
@@ -82,7 +82,7 @@ This is the form page for our 328 project
                                    value="{{ @City }}">
                             <check if="{{ isset(@errors['City']) }}">
                                 <!-- add styles -->
-                                <span class="err">{{ @errors['City'] }}</span>
+                                <span class="err text-danger">{{ @errors['City'] }}</span>
                             </check>
                         </div> <!-- End of City  -->
 
@@ -92,7 +92,7 @@ This is the form page for our 328 project
                                    value="{{ @State }}">
                             <check if="{{ isset(@errors['State']) }}">
                                 <!-- add styles -->
-                                <span class="err">{{ @errors['State'] }}</span>
+                                <span class="err text-danger">{{ @errors['State'] }}</span>
                             </check>
                         </div> <!-- End of State  -->
 
@@ -102,7 +102,7 @@ This is the form page for our 328 project
                                    value="{{ @Zip }}">
                             <check if="{{ isset(@errors['Zip']) }}">
                                 <!-- add styles -->
-                                <span class="err">{{ @errors['Zip'] }}</span>
+                                <span class="err text-danger">{{ @errors['Zip'] }}</span>
                             </check>
                             <br>
                         </div> <!-- End of Zip  -->
@@ -113,7 +113,7 @@ This is the form page for our 328 project
                                    value="{{ @Country }}">
                             <check if="{{ isset(@errors['Country']) }}">
                                 <!-- add styles -->
-                                <span class="err">{{ @errors['Country'] }}</span>
+                                <span class="err text-danger">{{ @errors['Country'] }}</span>
                             </check>
                         </div> <!-- End of Country  -->
 
@@ -124,7 +124,7 @@ This is the form page for our 328 project
                             <p class="text-muted">Phone number above must match this format: 123-456-7890</p>
                             <check if="{{ isset(@errors['PhoneNum']) }}">
                                 <!-- add styles -->
-                                <span class="err">{{ @errors['PhoneNum'] }}</span>
+                                <span class="err text-danger">{{ @errors['PhoneNum'] }}</span>
                             </check>
                         </div> <!-- End of Phone Number  -->
 

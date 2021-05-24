@@ -10,17 +10,13 @@
 class Validation
 {
     /**
-     * This function checks to see that a string is all alphabetic.
+     * This function checks to see that a string is all alphabetic, also trims off extra whitespace.
      * @param $name - The name being validated.
      * @return bool - Whether the name is valid or not.
      */
     static function validName($name)
     {
-        if ($name == "") {
-            return !empty($name);
-        } else if (ctype_alpha($name)) {
-            return $name;
-        }
+        return ctype_alpha(trim($name));
     }
 
     /**
@@ -30,26 +26,7 @@ class Validation
      */
     static function validEmail($email)
     {
-        $symbol = "/@/i";
-        $pattern = "/.com/i";
-        if ($email == "") {
-            return !empty($email);
-        } else if (preg_match($symbol, $email)) {
-            if (preg_match($pattern, $email)) {
-                return $email;
-            }
-        }
-    }
-
-    // This function checks to see if the user clicked the recipes by mail switch
-    static function validSwitch($switch)
-    {
-        // if the switch is flipped, return true
-        if (isset($switch)) {
-            return true;
-        }
-        // otherwise return false
-        return false;
+        return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
     /**

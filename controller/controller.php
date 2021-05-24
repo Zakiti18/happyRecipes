@@ -79,7 +79,7 @@ class Controller
             if (Validation::validEmail($userEmail)) {
                 $_SESSION['email'] = $userEmail;
             } else {
-                $this->_f3->set('errors["Email"]', 'Please enter a valid email that contains "@" and ".com"');
+                $this->_f3->set('errors["Email"]', 'Please enter a valid email that contains "@" and "."');
             }
 
             // Phone number
