@@ -238,4 +238,37 @@ class Controller
         $view = new Template();
         echo $view->render('views/dinner.html');
     }
+
+    function signup()
+    {
+        //$newUser = new User($_POST['fName'], );
+        //$GLOBALS['dataLayer']->newUser($newUser);
+
+        // Display the signup page
+        $view = new Template();
+        echo $view->render('views/signup.html');
+    }
+
+    function login()
+    {
+        // get user object
+        $user = $GLOBALS['dataLayer']->getUser($_POST['username'], $_POST['password']);
+
+        // if user is an admin go to admin page after login
+        if($user->getAdminId() != null){
+            header('location: adminPage'); // CHANGE
+        }
+        // otherwise, user is not an admin so go to user profile page
+        else{
+            header('location: profilePage'); // CHANGE
+        }
+
+        // add the user object to the session and the hive
+        $_SESSION['user'] = $user;
+        $this->_f3->set('user', $user);
+
+        // Display the login page
+        $view = new Template();
+        echo $view->render('views/login.html');
+    }
 }

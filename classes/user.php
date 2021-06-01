@@ -22,16 +22,14 @@ class User
     /**
      * User constructor. constructs a user object.
      *
-     * @param $_userId int users id in the database
      * @param $_fName String users first name
      * @param $_lName String users last name
      * @param $_username mixed users login username
      * @param $_password mixed users login password
      * @param $_email mixed users email
      */
-    public function __construct($_userId, $_fName, $_lName, $_username, $_password, $_email)
+    public function __construct($_fName, $_lName, $_username, $_password, $_email)
     {
-        $this->_userId = $_userId;
         $this->_fName = $_fName;
         $this->_lName = $_lName;
         $this->_username = $_username;
