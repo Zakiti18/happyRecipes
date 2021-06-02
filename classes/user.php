@@ -48,6 +48,16 @@ class User
     }
 
     /**
+     * Sets the user id (should never reset the id in the database)
+     *
+     * @param int $userId
+     */
+    public function setUserId($userId)
+    {
+        $this->_userId = $userId;
+    }
+
+    /**
      * The users first name
      *
      * @return String $_fName

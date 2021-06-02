@@ -1,5 +1,8 @@
 <?php
 
+// require database access
+require_once ($_SERVER['DOCUMENT_ROOT'].'/../happyRecipesConfig.php');
+
 /**
  * Class Datalayer
  * happyRecipes/model/dataLayer.php
@@ -8,8 +11,6 @@
  *
  * This file will interact with the database for our happy recipes project.
  */
-require_once ($_SERVER['DOCUMENT_ROOT'].'/../happyRecipesConfig.php');
-
 class DataLayer
 {
     // add a field for the database object
@@ -49,35 +50,44 @@ class DataLayer
 
         // 4. Execute the query
         $statement->execute();
-
-        // 5. Process the results (get userId) (typically used for select statements)
-        return $user->getUserId();
     }
 
-    function getUser($username, $password){
+    function getUser($username){
         // 1. Define the query
-        $sql = "SELECT * FROM hr_users WHERE user_name = :uName AND pass_word = :pWord";
+        $sql = "SELECT * FROM hr_users WHERE user_name = :uName";
 
         // 2. Prepare the statement
         $statement = $this->_dbh->prepare($sql);
 
         // 3. Bind the parameters
         $statement->bindParam(':uName', $username, PDO::PARAM_STR);
-        $statement->bindParam(':pWord', $password, PDO::PARAM_STR);
 
         // 4. Execute the query
-        $statement->execute();
+        // if the user does not exist return false
+        if(!$statement->execute()){
+            return false;
+        }
 
-        // 5. Process the results (typically used for select statements)
+        // 5. Process the results (build the user)
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-        $userId = $result['userId'];
-        $fName = $result['firstName'];
-        $lName = $result['lastName'];
-        $userName = $result['userName'];
-        $passWord = $result['passWord'];
-        $email = $result['email'];
 
-        // return the user as an object
-        return new User($fName, $lName, $userName, $passWord, $email);
+        // grab the individual parts
+        // the [0] is there because for some reason storing what fetchAll returns
+        // into another variable (result in this case) stores an array in an array
+        // so we need to access the array in the array that is at the 0th index
+        // this was we'll call it "fun" to figure out
+        $userId = $result[0]['userId'];
+        $fName = $result[0]['firstName'];
+        $lName = $result[0]['lastName'];
+        $userName = $result[0]['user_name'];
+        $passWord = $result[0]['pass_word'];
+        $email = $result[0]['email'];
+
+        // build the user object
+        $user = new User($fName, $lName, $userName, $passWord, $email);
+        $user->setUserId($userId);
+
+        // return the user object
+        return $user;
     }
 }

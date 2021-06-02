@@ -241,8 +241,73 @@ class Controller
 
     function signup()
     {
-        //$newUser = new User($_POST['fName'], );
-        //$GLOBALS['dataLayer']->newUser($newUser);
+        // Reinitialize the session array
+        $_SESSION = array();
+
+        // initialize all variables to store user input
+        $fName = "";
+        $lName = "";
+        $username = "";
+        $email = "";
+
+        // If the form has been submitted, add the data to session and send the user to the next page
+        // otherwise send them to signup page.
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            // First Name
+            $fName = $_POST['fname'];
+            if (Validation::validName($fName)) {
+                $_SESSION['fName'] = $fName;
+            } else {
+                $this->_f3->set('errors["fName"]', 'Please enter a valid first name');
+            }
+
+            // Last Name
+            $lName = $_POST['lname'];
+            if (Validation::validName($lName)) {
+                $_SESSION['lName'] = $lName;
+            } else {
+                $this->_f3->set('errors["lName"]', 'Please enter a valid last name');
+            }
+
+            // Username
+            $username = $_POST['username'];
+            if(Validation::validUsername($username)) {
+                $_SESSION['username'] = $username;
+            } else {
+                $this->_f3->set('errors["username"]', 'Usernames must be 3 or more characters and not already in use');
+            }
+
+            // password
+            $password = $_POST['password'];
+            if(!Validation::validNewPassword($password)){
+                $this->_f3->set('errors["password"]', 'Passwords must be at least 8 characters long');
+            }
+
+            // Email
+            $email = $_POST['email'];
+            if (Validation::validEmail($email)) {
+                $_SESSION['email'] = $email;
+            } else {
+                $this->_f3->set('errors["email"]', 'Please enter a valid email that contains "@" and "."');
+            }
+
+            //If the error array is empty, create the new user and redirect to home page
+            if (empty($this->_f3->get('errors'))) {
+                // creates a new user using the user input
+                $newUser = new User($fName, $lName, $username, $password, $email);
+                $GLOBALS['dataLayer']->newUser($newUser);
+
+                // Redirect
+                header('location: login');
+            }
+        } // End of validation if form is submitted
+
+        // Add the data to the hive
+        $this->_f3->set('fName', $fName);
+        $this->_f3->set('lName', $lName);
+        $this->_f3->set('email', $email);
+        $this->_f3->set('username', $username);
 
         // Display the signup page
         $view = new Template();
@@ -251,21 +316,21 @@ class Controller
 
     function login()
     {
-        // get user object
-        $user = $GLOBALS['dataLayer']->getUser($_POST['username'], $_POST['password']);
-
-        // if user is an admin go to admin page after login
-        if($user->getAdminId() != null){
-            header('location: adminPage'); // CHANGE
-        }
-        // otherwise, user is not an admin so go to user profile page
-        else{
-            header('location: profilePage'); // CHANGE
-        }
-
-        // add the user object to the session and the hive
-        $_SESSION['user'] = $user;
-        $this->_f3->set('user', $user);
+//        // get user object
+//        $user = $GLOBALS['dataLayer']->getUser($_POST['username'], $_POST['password']);
+//
+//        // if user is an admin go to admin page after login
+//        if($user->getAdminId() != null){
+//            header('location: adminPage'); // CHANGE
+//        }
+//        // otherwise, user is not an admin so go to user profile page
+//        else{
+//            header('location: profilePage'); // CHANGE
+//        }
+//
+//        // add the user object to the session and the hive
+//        $_SESSION['user'] = $user;
+//        $this->_f3->set('user', $user);
 
         // Display the login page
         $view = new Template();

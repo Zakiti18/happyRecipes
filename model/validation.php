@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * Class Validation
  * happyRecipes/model/validation.php
  * Cesar Escalona and Phillip Ball
  * 05/24/2021
@@ -9,6 +10,11 @@
  */
 class Validation
 {
+    //fields
+    const USERNAME_MIN_LENGTH = 3;
+    const PASSWORD_MIN_LENGTH = 8;
+
+    // methods
     /**
      * This function checks to see that a string is all alphabetic, also trims off extra whitespace.
      * @param $name - The name being validated.
@@ -112,5 +118,38 @@ class Validation
             return $phoneNum;
         }
         return $phoneNum;
+    }
+
+    /**
+     * Returns true if the username is valid
+     * (not already taken(in use) and 3+ characters long), false otherwise.
+     *
+     * @param $username String The username being validated
+     * @return boolean true if the username does not already exist
+     * and is at least 3 characters long, false otherwise
+     */
+    static function validUsername($username){
+        if(strlen($username) < self::USERNAME_MIN_LENGTH){
+            return false;
+        }
+        $compare = $GLOBALS['dataLayer']->getUser($username);
+        if($compare == false){
+            return false;
+        }
+        if($username == $compare->getUsername()){
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Returns true if the password is valid (PASSWORD_MIN_LENGTH+ characters long), false otherwise.
+     *
+     * @param $password mixed The password to be validated
+     * @return boolean true if the password is equal to or greater
+     * than PASSWORD_MIN_LENGTH, false otherwise
+     */
+    static function validNewPassword($password){
+        return strlen($password) >= self::PASSWORD_MIN_LENGTH;
     }
 }
