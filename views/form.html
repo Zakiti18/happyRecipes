@@ -13,7 +13,7 @@ This is the form page for our 328 project
     <!-- Entry to the site -->
     <!-- Form -->
     <div class="container bg-light pt-4">
-        <form method="post" class="form" action="#">
+        <form method="post" class="form" action="#" id="weekly">
             <div class="container bg-light main-form border rounded align-middle">
                 <div class="container bg-light form-pg0"><br>
                     <h1 class="text-center">Sign Up To Receive Our Top Weekly Recipes</h1>
@@ -29,7 +29,7 @@ This is the form page for our 328 project
                                 <!-- add styles -->
                                 <span class="err text-danger">{{ @errors['fName'] }}</span>
                             </check>
-                            <!-- Use this for Validation js <span class="err" id="err-fname">Please enter a first name</span> -->
+                            <span class="error" id="err-fname">Please enter a first name</span>
                         </div> <!-- End of First Name  -->
 
                         <div class="form-group col-md-6">
@@ -40,6 +40,7 @@ This is the form page for our 328 project
                                 <!-- add styles -->
                                 <span class="err text-danger">{{ @errors['lName'] }}</span>
                             </check>
+                            <span class="error" id="err-lname">Please enter a last name</span>
                             <br>
                         </div> <!-- End of Last Name  -->
 
@@ -52,6 +53,7 @@ This is the form page for our 328 project
                                 <!-- add styles -->
                                 <span class="err text-danger">{{ @errors['Email'] }}</span>
                             </check>
+                            <span class="error" id="err-email">Please enter an email</span>
                             <br>
                         </div> <!-- End of Email  -->
 
@@ -126,6 +128,7 @@ This is the form page for our 328 project
                                 <!-- add styles -->
                                 <span class="err text-danger">{{ @errors['PhoneNum'] }}</span>
                             </check>
+                            <span class="error" id="err-phone">Please enter a phone number</span>
                         </div> <!-- End of Phone Number  -->
 
                         <div class="form-group col-md-6"><br>

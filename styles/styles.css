@@ -1,7 +1,7 @@
 /*
 happyRecipes/styles/styles.css
 Cesar Escalona and Phillip Ball
-04/30/2021
+06/01/2021
 This is style sheet for our 328 project
 */
 
@@ -70,4 +70,12 @@ footer p {
 
 .box-shadow {
     box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+/* Form Styles below, we can edit this later */
+
+
+.error {
+    color: red;
+    font-weight: bold;
 }
