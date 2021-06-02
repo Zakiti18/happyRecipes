@@ -74,6 +74,11 @@ footer p {
 
 /* Form Styles below, we can edit this later */
 
+.err {
+    color: red;
+    display: none;
+    font-weight: bold;
+}
 
 .error {
     color: red;

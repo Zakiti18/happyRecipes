@@ -25,22 +25,26 @@ This is the form page for our 328 project
                             <label><strong>First Name</strong></label>
                             <input type="text" class="form-control" id="fname" name="fname"
                                    value="{{ @userFName }}">
+                            <!-- JS validation before the check -->
+                            <span class="err" id="err-fname">Please enter a first name</span>
                             <check if="{{ isset(@errors['fName']) }}">
                                 <!-- add styles -->
-                                <span class="err text-danger">{{ @errors['fName'] }}</span>
+                                <span class="text-danger">{{ @errors['fName'] }}</span>
                             </check>
-                            <span class="error" id="err-fname">Please enter a first name</span>
+
                         </div> <!-- End of First Name  -->
 
                         <div class="form-group col-md-6">
                             <label><strong>Last Name</strong></label>
                             <input type="text" class="form-control" id="lname" name="lname"
                                    value="{{ @userLName }}">
+                            <!-- JS validation before the check -->
+                            <span class="err" id="err-lname">Please enter a last name</span>
                             <check if="{{ isset(@errors['lName']) }}">
                                 <!-- add styles -->
-                                <span class="err text-danger">{{ @errors['lName'] }}</span>
+                                <span class="text-danger">{{ @errors['lName'] }}</span>
                             </check>
-                            <span class="error" id="err-lname">Please enter a last name</span>
+
                             <br>
                         </div> <!-- End of Last Name  -->
 
@@ -49,11 +53,13 @@ This is the form page for our 328 project
                             <input type="email" class="form-control" id="email"
                                    placeholder="someone@domain.com" name="email"
                                    value="{{ @Email }}">
+                            <!-- JS validation before the check -->
+                            <span class="err" id="err-email">Please enter an email</span>
                             <check if="{{ isset(@errors['Email']) }}">
                                 <!-- add styles -->
-                                <span class="err text-danger">{{ @errors['Email'] }}</span>
+                                <span class="text-danger">{{ @errors['Email'] }}</span>
                             </check>
-                            <span class="error" id="err-email">Please enter an email</span>
+
                             <br>
                         </div> <!-- End of Email  -->
 
@@ -67,13 +73,17 @@ This is the form page for our 328 project
                             </div><br>
                         </div> <!-- End of Form Switch  -->
 
+                        <!-- The following fields will be required if switch is checked  -->
+
                         <div class="form-group col-md-12">
                             <label for="address"><strong>Address</strong></label>
                             <input type="text" class="form-control" id="address" name="address"
                                    value="{{ @Address }}">
+                            <!-- JS validation before the check -->
+                            <span class="err" id="err-address">Please enter an address</span>
                             <check if="{{ isset(@errors['Address']) }}">
                                 <!-- add styles -->
-                                <span class="err text-danger">{{ @errors['Address'] }}</span>
+                                <span class="text-danger">{{ @errors['Address'] }}</span>
                             </check>
                             <br>
                         </div> <!-- End of Address  -->
@@ -82,6 +92,8 @@ This is the form page for our 328 project
                             <label for="city"><strong>City</strong></label>
                             <input type="text" class="form-control" id="city" name="city"
                                    value="{{ @City }}">
+                            <!-- JS validation before the check -->
+                            <span class="err" id="err-city">Please enter a city</span>
                             <check if="{{ isset(@errors['City']) }}">
                                 <!-- add styles -->
                                 <span class="err text-danger">{{ @errors['City'] }}</span>
@@ -92,6 +104,8 @@ This is the form page for our 328 project
                             <label for="state"><strong>State</strong></label>
                             <input type="text" class="form-control" id="state" name="state"
                                    value="{{ @State }}">
+                            <!-- JS validation before the check -->
+                            <span class="err" id="err-state">Please enter a state</span>
                             <check if="{{ isset(@errors['State']) }}">
                                 <!-- add styles -->
                                 <span class="err text-danger">{{ @errors['State'] }}</span>
@@ -102,6 +116,8 @@ This is the form page for our 328 project
                             <label for="zip"><strong>Zip</strong></label>
                             <input type="text" class="form-control" id="zip" name="zip"
                                    value="{{ @Zip }}">
+                            <!-- JS validation before the check -->
+                            <span class="err" id="err-zip">Please enter a zip</span>
                             <check if="{{ isset(@errors['Zip']) }}">
                                 <!-- add styles -->
                                 <span class="err text-danger">{{ @errors['Zip'] }}</span>
@@ -113,22 +129,28 @@ This is the form page for our 328 project
                             <label for="country"><strong>Country</strong></label>
                             <input type="text" class="form-control" id="country" name="country"
                                    value="{{ @Country }}">
+                            <!-- JS validation before the check -->
+                            <span class="err" id="err-country">Please enter a country</span>
                             <check if="{{ isset(@errors['Country']) }}">
                                 <!-- add styles -->
                                 <span class="err text-danger">{{ @errors['Country'] }}</span>
                             </check>
                         </div> <!-- End of Country  -->
 
+                        <!-- End of required fields if switch is checked  -->
+
                         <div class="form-group col-md-6">
                             <label for="phoneNum"><strong>Phone Number</strong></label>
                             <input type="tel" class="form-control" id="phoneNum" name="phoneNum"
                                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="{{ @phoneNum }}">
                             <p class="text-muted">Phone number above must match this format: 123-456-7890</p>
+                            <!-- JS validation before the check -->
+                            <span class="err" id="err-phone">Please enter a phone number</span>
                             <check if="{{ isset(@errors['PhoneNum']) }}">
                                 <!-- add styles -->
-                                <span class="err text-danger">{{ @errors['PhoneNum'] }}</span>
+                                <span class="text-danger">{{ @errors['PhoneNum'] }}</span>
                             </check>
-                            <span class="error" id="err-phone">Please enter a phone number</span>
+
                         </div> <!-- End of Phone Number  -->
 
                         <div class="form-group col-md-6"><br>
