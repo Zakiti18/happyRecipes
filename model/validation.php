@@ -128,7 +128,7 @@ class Validation
      * @return boolean true if the username does not already exist
      * and is at least 3 characters long, false otherwise
      */
-    static function validUsername($username){
+    static function validNewUsername($username){
         if(strlen($username) < self::USERNAME_MIN_LENGTH){
             return false;
         }
@@ -151,5 +151,25 @@ class Validation
      */
     static function validNewPassword($password){
         return strlen($password) >= self::PASSWORD_MIN_LENGTH;
+    }
+
+    static function validUsername($username)
+    {
+        return $GLOBALS['dataLayer']->getUser($username) != false;
+    }
+
+    /**
+     * Returns true if the entered password matches the password of the user with the given username,
+     * false otherwise.
+     *
+     * @param $username String The username of the attempted login (needed to get user from database)
+     * @param $password mixed The password to be validated
+     * @return boolean true if the entered password is equal
+     * to the user password with the same username
+     */
+    static function validPassword($username, $password)
+    {
+        $compare = $GLOBALS['dataLayer']->getUser($username);
+        return $password == $compare->getPassword();
     }
 }

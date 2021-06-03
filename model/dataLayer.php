@@ -76,6 +76,7 @@ class DataLayer
         // into another variable (result in this case) stores an array in an array
         // so we need to access the array in the array that is at the 0th index
         // this was we'll call it "fun" to figure out
+        $isAdmin = $result[0]['isAdmin'];
         $userId = $result[0]['userId'];
         $fName = $result[0]['firstName'];
         $lName = $result[0]['lastName'];
@@ -84,7 +85,12 @@ class DataLayer
         $email = $result[0]['email'];
 
         // build the user object
-        $user = new User($fName, $lName, $userName, $passWord, $email);
+        if($isAdmin != null){
+            $user = new Admin(true, $fName, $lName, $userName, $passWord, $email);
+        }
+        else{
+            $user = new User($fName, $lName, $userName, $passWord, $email);
+        }
         $user->setUserId($userId);
 
         // return the user object

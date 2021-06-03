@@ -11,16 +11,32 @@
 class Admin extends User
 {
     // fields
-    private $_adminId;
+    private $_isAdmin;
 
     // methods
     /**
-     * The admins id value in the database
+     * Admin constructor.
      *
-     * @return int $_adminId
+     * @param $_isAdmin boolean whether the user is an admin or not
+     * @param $_fName String users first name
+     * @param $_lName String users last name
+     * @param $_username mixed users login username
+     * @param $_password mixed users login password
+     * @param $_email mixed users email
      */
-    public function getAdminId()
+    public function __construct($_isAdmin, $_fName, $_lName, $_username, $_password, $_email)
     {
-        return $this->_adminId;
+        parent::__construct($_fName, $_lName, $_username, $_password, $_email);
+        $this->_isAdmin = $_isAdmin;
+    }
+
+    /**
+     * Returns whether or not this user is an admin
+     *
+     * @return boolean $_adminId
+     */
+    public function isAdmin()
+    {
+        return $this->_isAdmin;
     }
 }

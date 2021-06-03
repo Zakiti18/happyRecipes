@@ -1,0 +1,43 @@
+<!--
+happyRecipes/views/profile.html
+Cesar Escalona and Phillip Ball
+06/03/2021
+This is the profile page for our 328 project
+-->
+
+<include href="views/header.html" />
+
+<!-- Main -->
+<main role="main">
+    <!-- Container -->
+    <div class="container px-0">
+        <!-- Jumbotron -->
+        <div class="jumbotron pt-2 px-3">
+
+            <!-- Title and Link Home -->
+            <div class="d-flex justify-content-between">
+                <h1>Profile Page</h1>
+                <a href="{{@BASE}}" class="text-decoration-none align-self-end">Home</a>
+            </div> <!-- Title and Link Home END -->
+            <hr>
+
+            <!-- Display is changed depending on whether the user is an admin or not -->
+            <check if="{{ @SESSION.user instanceof Admin }}">
+                <!-- if the user is an admin -->
+                <true>
+                    <p>Welcome back Admin {{ @SESSION.user->getFName() }}!</p>
+                    <!-- ability to add, remove and edit database related things go here -->
+                </true>
+
+                <!-- if the user is not an admin -->
+                <false>
+                    <p>Welcome back {{ @SESSION.user->getFName() }}!</p>
+                    <!-- ability to favorite and un-favorite recipes go here -->
+                </false>
+            </check> <!-- Admin Check END -->
+
+        </div> <!-- Jumbotron END -->
+    </div> <!-- Container END -->
+</main> <!-- Main END -->
+
+<include href="views/footer.html" />

@@ -28,6 +28,7 @@ class Controller
      */
     function home()
     {
+        // Displays the home page
         $view = new Template();
         echo $view->render('views/home.html');
     }
@@ -239,6 +240,9 @@ class Controller
         echo $view->render('views/dinner.html');
     }
 
+    /**
+     * Displays a form page for making a user on the website
+     */
     function signup()
     {
         // Reinitialize the session array
@@ -256,29 +260,23 @@ class Controller
 
             // First Name
             $fName = $_POST['fname'];
-            if (Validation::validName($fName)) {
-                $_SESSION['fName'] = $fName;
-            } else {
+            if (!Validation::validName($fName)) {
                 $this->_f3->set('errors["fName"]', 'Please enter a valid first name');
             }
 
             // Last Name
             $lName = $_POST['lname'];
-            if (Validation::validName($lName)) {
-                $_SESSION['lName'] = $lName;
-            } else {
+            if (!Validation::validName($lName)) {
                 $this->_f3->set('errors["lName"]', 'Please enter a valid last name');
             }
 
             // Username
             $username = $_POST['username'];
-            if(Validation::validUsername($username)) {
-                $_SESSION['username'] = $username;
-            } else {
+            if(!Validation::validNewUsername($username)) {
                 $this->_f3->set('errors["username"]', 'Usernames must be 3 or more characters and not already in use');
             }
 
-            // password
+            // Password
             $password = $_POST['password'];
             if(!Validation::validNewPassword($password)){
                 $this->_f3->set('errors["password"]', 'Passwords must be at least 8 characters long');
@@ -286,9 +284,7 @@ class Controller
 
             // Email
             $email = $_POST['email'];
-            if (Validation::validEmail($email)) {
-                $_SESSION['email'] = $email;
-            } else {
+            if (!Validation::validEmail($email)) {
                 $this->_f3->set('errors["email"]', 'Please enter a valid email that contains "@" and "."');
             }
 
@@ -296,10 +292,10 @@ class Controller
             if (empty($this->_f3->get('errors'))) {
                 // creates a new user using the user input
                 $newUser = new User($fName, $lName, $username, $password, $email);
-                $GLOBALS['dataLayer']->newUser($newUser);
+                $_SESSION['user'] = $GLOBALS['dataLayer']->newUser($newUser);
 
                 // Redirect
-                header('location: login');
+                header('location: home');
             }
         } // End of validation if form is submitted
 
@@ -314,26 +310,79 @@ class Controller
         echo $view->render('views/signup.html');
     }
 
+    /**
+     * Displays a form page for logging into a user on the website
+     */
     function login()
     {
-//        // get user object
-//        $user = $GLOBALS['dataLayer']->getUser($_POST['username'], $_POST['password']);
-//
-//        // if user is an admin go to admin page after login
-//        if($user->getAdminId() != null){
-//            header('location: adminPage'); // CHANGE
-//        }
-//        // otherwise, user is not an admin so go to user profile page
-//        else{
-//            header('location: profilePage'); // CHANGE
-//        }
-//
-//        // add the user object to the session and the hive
-//        $_SESSION['user'] = $user;
-//        $this->_f3->set('user', $user);
+        // Reinitialize the session array
+        $_SESSION = array();
+
+        // initialize username for stickiness
+        $username = "";
+
+        // If the form has been submitted, add the data to session and send the user to the next page
+        // otherwise send them to login page.
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            // Username
+            $username = $_POST['username'];
+            if(!Validation::validUsername($username)) {
+                $this->_f3->set('errors["username"]', 'Incorrect username');
+            }
+
+            // Password
+            $password = $_POST['password'];
+            if(!Validation::validPassword($username, $password)){
+                $this->_f3->set('errors["password"]', 'Incorrect password');
+            }
+
+            //If the error array is empty, add the user to the session and redirect to home page
+            if (empty($this->_f3->get('errors'))) {
+                // adds the user to the session
+                $_SESSION['user'] = $GLOBALS['dataLayer']->getUser($username);
+
+                // Redirect
+                header('location: home');
+            }
+        } // End of validation if form is submitted
+
+        // Add the data to the hive
+        $this->_f3->set('username', $username);
 
         // Display the login page
         $view = new Template();
         echo $view->render('views/login.html');
+    }
+
+    /**
+     * Logs the current user out and redirects them to the home page.
+     */
+    function logout(){
+        session_start();
+        session_destroy();
+        $_SESSION = array();
+        header('location: home');
+    }
+
+    /**
+     * Displays a profile page that changes whether the user is an admin or not.
+     * Admins have the ability to add, remove and edit database related things.
+     * Non-admins have the ability to favorite and un-favorite recipes.
+     */
+    function profile()
+    {
+        $user = $_SESSION['user'];
+
+        if($user instanceof Admin){
+            // ability to add, remove and edit database related things go here
+        }
+        else{
+            // ability to favorite and un-favorite recipes go here
+        }
+
+        // Display the profile page
+        $view = new Template();
+        echo $view->render('views/profile.html');
     }
 }

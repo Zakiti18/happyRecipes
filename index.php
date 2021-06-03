@@ -28,6 +28,11 @@ $f3->route('GET /', function(){
     $GLOBALS["con"]->home();
 });
 
+// Home route
+$f3->route('GET /home', function(){
+    $GLOBALS["con"]->home();
+});
+
 // form related routes
 
 // Weekly recipes sign up route
@@ -64,14 +69,24 @@ $f3->route('GET /dinner', function(){
 
 // account related routes
 
-// signup route
+// Signup route
 $f3->route('GET|POST /signup', function(){
     $GLOBALS["con"]->signup();
 });
 
-// login route
+// Login route
 $f3->route('GET|POST /login', function(){
     $GLOBALS["con"]->login();
+});
+
+// Logout route
+$f3->route('GET /logout', function(){
+    $GLOBALS["con"]->logout();
+});
+
+// Profile route
+$f3->route('GET /profile', function(){
+    $GLOBALS["con"]->profile();
 });
 
 // Run Fat-Free

@@ -34,10 +34,34 @@ This is the header for all of our pages to include on our 328 project
                     <strong>Happy Recipes</strong>
                 </a><!-- Website Name and Home Button END -->
 
-                <!-- Sign Up Button -->
-                <a href="signup" class="text-right text-decoration-none text-light">
-                    <p class="my-0">Sign Up!</p>
-                </a>
+                <!-- Navigation Based on if the User is logged in or not -->
+                <div class="row mx-2">
+                    <check if="{{ empty(@SESSION.user) }}">
+                        <true>
+                            <!-- Log In Button -->
+                            <a href="login" class="col-6 text-nowrap text-decoration-none text-light">
+                                <p class="my-0">Log In</p>
+                            </a>
+
+                            <!-- Sign Up Button -->
+                            <a href="signup" class="col-6 text-nowrap text-decoration-none text-light">
+                                <p class="my-0">Sign Up</p>
+                            </a>
+                        </true>
+                        <false>
+                            <!-- Profile Button -->
+                            <a href="profile" class="col-6 text-nowrap text-decoration-none text-light">
+                                <p class="my-0">Profile</p>
+                            </a>
+
+                            <!-- Log Out Button -->
+                            <a href="logout" class="col-6 text-nowrap text-decoration-none text-light">
+                                <p class="my-0">Log Out</p>
+                            </a>
+                        </false>
+                    </check>
+                </div> <!-- Based Navigation END -->
+
             </div> <!-- Container END -->
         </div> <!-- Navbar END -->
     </header> <!-- Header END -->

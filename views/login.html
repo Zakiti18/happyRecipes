@@ -10,9 +10,65 @@ This is the login page for our 328 project
 <!-- Main -->
 <main role="main">
     <!-- Container -->
-    <div class="container">
-        <h1>Login Page</h1>
+    <div class="container bg-light pt-4">
+        <!-- Login Form -->
+        <form action="#" method="post">
+            <!-- Inner Container 1 for style -->
+            <div class="container bg-light main-form border rounded align-middle">
+                <!-- Inner Container 2 for style -->
+                <div class="container bg-light form-pg0"><br>
+
+                    <!-- Page Description -->
+                    <h1 class="text-center">Sign in to See Your Favorite Recipes!</h1>
+                    <hr><br>
+
+                    <!-- Row -->
+                    <div class="row">
+                        <!-- Username -->
+                        <div class="form-group col-md-6">
+                            <label class="w-75"><strong>Username</strong>
+                                <input type="text" class="form-control"
+                                       id="username" name="username" value="{{ @username }}"></label>
+                            <!-- JavaScript Validation -->
+                            <span class="err" id="err-username">Usernames must be 3 or more characters and not already in use</span>
+                            <!-- PHP Validation -->
+                            <check if="{{ isset(@errors['username']) }}">
+                                <span class="text-danger">{{ @errors['username'] }}</span>
+                            </check>
+                        </div> <!-- Username END -->
+
+                        <!-- Password -->
+                        <div class="form-group col-md-6">
+                            <label class="w-75"><strong>Password</strong>
+                                <input type="password" class="form-control"
+                                       id="password" name="password" value="{{ @password }}"></label>
+                            <!-- JavaScript Validation -->
+                            <span class="err" id="err-password">Passwords must be at least 8 characters long</span>
+                            <!-- PHP Validation -->
+                            <check if="{{ isset(@errors['password']) }}">
+                                <span class="text-danger">{{ @errors['password'] }}</span>
+                            </check>
+                            <!-- Show/Hide Password -->
+                            <label class="d-block">
+                                <input type="checkbox" id="passwordCheckbox" class="mx-1">Show Password</label>
+                        </div> <!-- Password END -->
+                    </div> <!-- Row END -->
+                    <br>
+
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <input class="btn btn-primary" type="submit" value="Submit">
+                        <br>
+                    </div> <!-- Submit Button END -->
+
+                </div> <!-- Inner Container 1 END -->
+                <br>
+            </div> <!-- Inner Container 2 END -->
+            <br>
+        </form> <!-- Login Form END -->
     </div> <!-- Container END -->
 </main> <!-- Main END -->
+
+<script src="scripts/showPasswordBox.js"></script>
 
 <include href="views/footer.html" />
