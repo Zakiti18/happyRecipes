@@ -96,4 +96,31 @@ class DataLayer
         // return the user object
         return $user;
     }
+
+    function getRecipe($recipe_name)
+    {
+        // 1. Define the query
+        $sql = "SELECT * FROM hr_recipes WHERE recipe_name = :rName";
+
+        // 2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        // 3. Bind the parameters
+        $statement->bindParam(':rName', $recipe_name, PDO::PARAM_STR);
+
+        // 4. Execute the query
+        $statement->execute();
+
+        // 5. Process the results (build the recipe)
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($result as $row){
+            $recipe_name = $row['recipe_name'];
+            $recipe_description = $row['recipe_description'];
+            $recipe_image = $row['recipe_image'];
+            $recipe_code = $row['recipe_code'];
+            $userId = $row['userId'];
+        }
+        // Saving this to an object
+        return new Recipe($recipe_name, $recipe_description, $recipe_image, $recipe_code, $userId);
+    }
 }
