@@ -215,6 +215,12 @@ class Controller
      */
     function breakfast()
     {
+        // get the recipe
+        $recipe = $GLOBALS['dataLayer']->getRecipe("Cheesy Scrambled Eggs");
+
+        // add the recipe to the hive
+        $this->_f3->set('recipe', $recipe);
+
         // Display a specific category page
         $view = new Template();
         echo $view->render('views/breakfast.html');

@@ -21,7 +21,6 @@ class Recipe
     /**
      * Recipe constructor. Constructs a Recipe object.
      *
-     * @param $_recipeId int the recipes id in the database
      * @param $_name String the name of the recipe
      * @param $_description String the description of the recipe
      * @param $_recipeImage String the name of the image
@@ -35,26 +34,6 @@ class Recipe
         $this->_recipeImage = $_recipeImage;
         $this->_ingredients = $_ingredients;
         $this->_submittedBy = $_submittedBy;
-    }
-
-    /**
-     * The recipes image in the database
-     *
-     * @return String The recipes image name in the database
-     */
-    public function getRecipeImage()
-    {
-        return $this->_recipeImage;
-    }
-
-    /**
-     * The recipes ingredients in the database
-     *
-     * @return String[] $_ingredients
-     */
-    public function getIngredients()
-    {
-        return $this->_ingredients;
     }
 
     /**
@@ -78,6 +57,26 @@ class Recipe
     }
 
     /**
+     * The recipes image in the database
+     *
+     * @return String The recipes image name in the database
+     */
+    public function getRecipeImage()
+    {
+        return $this->_recipeImage;
+    }
+
+    /**
+     * The recipes ingredients in the database
+     *
+     * @return String[] $_ingredients
+     */
+    public function getIngredients()
+    {
+        return $this->_ingredients;
+    }
+
+    /**
      * Who the recipe was submitted by
      *
      * @return String $_submittedBy
@@ -86,5 +85,4 @@ class Recipe
     {
         return $this->_submittedBy;
     }
-
 }

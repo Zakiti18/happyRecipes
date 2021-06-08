@@ -120,7 +120,90 @@ class DataLayer
             $recipe_code = $row['recipe_code'];
             $userId = $row['userId'];
         }
+
+        // we need to decipher the recipe_code into the ingredients
+        // first we split the code into an array of chars
+        $decipher = str_split($recipe_code);
+        // this is the array that will hold the ingredients to be used in the Recipe constructor
+        $ingredients = array();
+        // then loop over the decipher array by looping until we've looped over each char
+        for($i = 0; $i < strlen($recipe_code); $i++){
+            // if we are currently looking at " " (space) move on to the next index
+            // otherwise we know we're looking at a number
+            if($decipher[$i] != " "){
+                // so, we need to check if that number is a double digit
+                // by checking the index next to us
+                if($decipher[$i + 1] != " "){
+                    // if the next index is a number we know we're looking at a double digit
+                    // so we concatenate both the current index and the next
+                    array_push($ingredients, $this->getIngredient($decipher[$i]) . $this->getIngredient($decipher[$i + 1]));
+                    // and increment the loop an extra time because we just used two indexes rather than one
+                    $i++;
+                    // if the last two indexes make up a double digit then that extra increment will
+                    // give us a null pointer exception, so we need to break.
+                    if($i >= strlen($recipe_code)){
+                        break;
+                    }
+                }
+                // if the index next to the one we're currently looking at is not a number
+                // we know that we're on a single digit
+                else{
+                    array_push($ingredients, $this->getIngredient($decipher[$i]));
+                }
+            }
+        }
+
+        // changes the userId to the name associated with said id
+        $userId = $this->getUserId($userId);
+
         // Saving this to an object
-        return new Recipe($recipe_name, $recipe_description, $recipe_image, $recipe_code, $userId);
+        return new Recipe($recipe_name, $recipe_description, $recipe_image, $ingredients, $userId);
+    }
+
+    function getIngredient($ingredientId)
+    {
+        // 1. Define the query
+        $sql = "SELECT * FROM hr_ingredients WHERE ingredient_id = :iId";
+
+        // 2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        // 3. Bind the parameters
+        $statement->bindParam(':iId', $ingredientId, PDO::PARAM_STR);
+
+        // 4. Execute the query
+        $statement->execute();
+
+        // 5. Process the results
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        // $result is an array of arrays but we know that we should only receive one row
+        // from the query, so we know the array we access is at index 0 of the outer array
+        // so we access the ingredient_name in the inner array by first accessing the inner array itself
+        // with the [0]
+        return $result[0]['ingredient_name'];
+    }
+
+    function getUserId($userId)
+    {
+        // 1. Define the query
+        $sql = "SELECT * FROM hr_users WHERE userId = :uId";
+
+        // 2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        // 3. Bind the parameters
+        $statement->bindParam(':uId', $userId, PDO::PARAM_STR);
+
+        // 4. Execute the query
+        $statement->execute();
+
+        // 5. Process the results
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        // we want to return both the first name and the last name so, we access the
+        // associative array at index 0 of the outer array and get firstName and lastName
+        // from that inner associative array
+        return $result[0]['firstName'] . " " . $result[0]['lastName'];
     }
 }
