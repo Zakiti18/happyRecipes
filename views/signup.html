@@ -12,7 +12,7 @@ This is the sign up page for our 328 project
     <!-- Container -->
     <div class="container bg-light pt-4">
         <!-- Sign Up Form -->
-        <form action="#" method="post" id="weekly">
+        <form action="#" method="post" id="signup">
             <!-- Inner Container 1 for style -->
             <div class="container bg-light main-form border rounded align-middle">
                 <!-- Inner Container 2 for style -->
@@ -26,11 +26,11 @@ This is the sign up page for our 328 project
                     <div class="row">
                         <!-- Username -->
                         <div class="form-group col-md-6">
-                            <label class="w-75"><strong>Username</strong>
+                            <label class="w-75"><strong>Username</strong></label>
                                 <input type="text" class="form-control"
-                                       id="username" name="username" value="{{ @username }}"></label>
+                                       id="username" name="username" value="{{ @username }}">
                             <!-- JavaScript Validation -->
-                            <span class="err" id="err-username">Usernames must be 3 or more characters and not already in use</span>
+                            <span class="err" id="err-username">Please Enter a Username</span>
                             <!-- PHP Validation -->
                             <check if="{{ isset(@errors['username']) }}">
                                 <span class="text-danger">{{ @errors['username'] }}</span>
@@ -39,11 +39,11 @@ This is the sign up page for our 328 project
 
                         <!-- Password -->
                         <div class="form-group col-md-6">
-                            <label class="w-75"><strong>Password</strong>
+                            <label class="w-75"><strong>Password</strong></label>
                                 <input type="password" class="form-control"
-                                       id="password" name="password" value="{{ @password }}"></label>
+                                       id="password" name="password" value="{{ @password }}">
                             <!-- JavaScript Validation -->
-                            <span class="err" id="err-password">Passwords must be at least 8 characters long</span>
+                            <span class="err" id="err-password">Please Enter a Password</span>
                             <!-- PHP Validation -->
                             <check if="{{ isset(@errors['password']) }}">
                                 <span class="text-danger">{{ @errors['password'] }}</span>
@@ -59,11 +59,11 @@ This is the sign up page for our 328 project
                     <div class="row">
                         <!-- First Name -->
                         <div class="form-group col-md-6">
-                            <label class="w-75"><strong>First Name</strong>
+                            <label class="w-75"><strong>First Name</strong></label>
                             <input type="text" class="form-control"
-                                   id="fname" name="fname" value="{{ @fName }}"></label>
+                                   id="fname" name="fname" value="{{ @fName }}">
                             <!-- JavaScript Validation -->
-                            <span class="err" id="err-fname">Please enter your first name</span>
+                            <span class="err" id="err-fname">Please Enter a First Name</span>
                             <!-- PHP Validation -->
                             <check if="{{ isset(@errors['fName']) }}">
                                 <span class="text-danger">{{ @errors['fName'] }}</span>
@@ -72,11 +72,11 @@ This is the sign up page for our 328 project
 
                         <!-- Last Name -->
                         <div class="form-group col-md-6">
-                            <label class="w-75"><strong>Last Name</strong>
+                            <label class="w-75"><strong>Last Name</strong></label>
                                 <input type="text" class="form-control"
-                                       id="lname" name="lname" value="{{ @lName }}"></label>
+                                       id="lname" name="lname" value="{{ @lName }}">
                             <!-- JavaScript Validation -->
-                            <span class="err" id="err-lname">Please enter your last name</span>
+                            <span class="err" id="err-lname">Please Enter a Last Name</span>
                             <!-- PHP Validation -->
                             <check if="{{ isset(@errors['lName']) }}">
                                 <span class="text-danger">{{ @errors['lName'] }}</span>
@@ -89,11 +89,11 @@ This is the sign up page for our 328 project
                     <div class="row">
                         <!-- Email -->
                         <div class="form-group col-md-6">
-                            <label class="w-75"><strong>Email</strong>
+                            <label class="w-75"><strong>Email</strong></label>
                                 <input type="email" class="form-control" id="email"
-                                       placeholder="someone@domain.com" name="email" value="{{ @email }}"></label>
+                                       placeholder="someone@domain.com" name="email" value="{{ @email }}">
                             <!-- JavaScript Validation -->
-                            <span class="err" id="err-email">Please enter a valid email that contains "@" and "."</span>
+                            <span class="err" id="err-email">Please Enter a Valid Email That Contains "@" and "."</span>
                             <!-- PHP Validation -->
                             <check if="{{ isset(@errors['email']) }}">
                                 <span class="text-danger">{{ @errors['email'] }}</span>
@@ -117,5 +117,7 @@ This is the sign up page for our 328 project
 </main> <!-- Main END -->
 
 <script src="scripts/showPasswordBox.js"></script>
+<!-- Scripts from form go here...--->
+<script src="scripts/signUpScript.js"></script>
 
 <include href="views/footer.html" />
