@@ -100,7 +100,9 @@ class DataLayer
     function getRecipe($recipe_name)
     {
         // 1. Define the query
-        $sql = "SELECT * FROM hr_recipes WHERE recipe_name = :rName";
+        $sql = "SELECT * FROM hr_recipes, hr_users
+                WHERE hr_recipes.userId = hr_users.userId
+                AND hr_recipes.recipe_name = :rName";
 
         // 2. Prepare the statement
         $statement = $this->_dbh->prepare($sql);
@@ -118,7 +120,7 @@ class DataLayer
             $recipe_description = $row['recipe_description'];
             $recipe_image = $row['recipe_image'];
             $recipe_code = $row['recipe_code'];
-            $userId = $row['userId'];
+            $userName = $row['firstName'] . " " . $row['lastName'];
         }
 
         // we need to decipher the recipe_code into the ingredients
@@ -153,11 +155,8 @@ class DataLayer
             }
         }
 
-        // changes the userId to the name associated with said id
-        $userId = $this->getUserId($userId);
-
         // Saving this to an object
-        return new Recipe($recipe_name, $recipe_description, $recipe_image, $ingredients, $userId);
+        return new Recipe($recipe_name, $recipe_description, $recipe_image, $ingredients, $userName);
     }
 
     function getIngredient($ingredientId)
@@ -184,26 +183,21 @@ class DataLayer
         return $result[0]['ingredient_name'];
     }
 
-    function getUserId($userId)
+    function favorite($recipe_name)
     {
         // 1. Define the query
-        $sql = "SELECT * FROM hr_users WHERE userId = :uId";
+        $sql = "MAKE NEW COLUMN IN USERS WITH RECIPE_NAME AS VALUE";
 
         // 2. Prepare the statement
         $statement = $this->_dbh->prepare($sql);
 
         // 3. Bind the parameters
-        $statement->bindParam(':uId', $userId, PDO::PARAM_STR);
+        $statement->bindParam(':rName', $recipe_name, PDO::PARAM_STR);
 
         // 4. Execute the query
         $statement->execute();
 
         // 5. Process the results
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-        // we want to return both the first name and the last name so, we access the
-        // associative array at index 0 of the outer array and get firstName and lastName
-        // from that inner associative array
-        return $result[0]['firstName'] . " " . $result[0]['lastName'];
     }
 }
