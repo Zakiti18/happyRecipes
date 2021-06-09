@@ -31,7 +31,11 @@ class DataLayer
         }
     }
 
-    // saves an order to the database
+    /**
+     * Saves a new user to the database using the information from the sign up page.
+     *
+     * @param $user Object a user object
+     */
     function newUser($user)
     {
         // 1. Define the query
@@ -52,6 +56,13 @@ class DataLayer
         $statement->execute();
     }
 
+    /**
+     * Retrieves information from the database based on a username
+     * and builds a user object with said information.
+     *
+     * @param $username String a users username
+     * @return User an object with all of the user's account information
+     */
     function getUser($username){
         // 1. Define the query
         $sql = "SELECT * FROM hr_users WHERE user_name = :uName";
@@ -97,6 +108,13 @@ class DataLayer
         return $user;
     }
 
+    /**
+     * Searches through the database for a recipe that shares the given recipe name
+     * and builds a Recipe object using the information from the database.
+     *
+     * @param $recipe_name String the name of a recipe
+     * @return Recipe a Recipe object with information from the database
+     */
     function getRecipe($recipe_name)
     {
         // 1. Define the query
@@ -159,6 +177,12 @@ class DataLayer
         return new Recipe($recipe_name, $recipe_description, $recipe_image, $ingredients, $userName);
     }
 
+    /**
+     * Retrieves an ingredient from the database based on the id of said ingredient.
+     *
+     * @param $ingredientId int the id of an ingredient
+     * @return String the ingredient
+     */
     function getIngredient($ingredientId)
     {
         // 1. Define the query
