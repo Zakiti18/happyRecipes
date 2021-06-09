@@ -21,6 +21,40 @@ This is the home page for our 328 project
                 <a href="form" class="btn btn-secondary my-2">Receive Weekly Recipes</a>
             </p>
             <img src="images/randomFood1.jpg" alt="plenty of food">
+
+            <!-- Random Food Button -->
+            <div class="text-center w-25 mx-auto">
+                <p class="lead">Can't decide what to make? <br> Try a random recipe!</p>
+                <button type="button" class="btn btn-primary" id="randomRecipeBtn"
+                        data-toggle="modal" data-target="#randomRecipe">Gimme a Recipe!</button>
+            </div> <!-- Random Food Button END -->
+
+            <!-- Random Food Modal -->
+            <div class="modal fade" id="randomRecipe" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="foodName"></h5>
+                            <button type="button" class="close rounded-circle" data-dismiss="modal">
+                                <span>X</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h6>Description:</h6>
+                            <p>PLACEHOLDER</p>
+                            <hr>
+                            <h6>Ingredients:</h6>
+                            <ul>
+                                <li>PLACEHOLDER</li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- Random Food Modal END -->
+
         </section>
     </div> <!-- Entry to the site END -->
 
@@ -234,5 +268,8 @@ This is the home page for our 328 project
         </div><br> <!-- Cards Group END -->
     </div> <!-- Container END -->
 </main> <!-- Main END -->
+
+<script src="//code.jquery.com/jquery.js"></script>
+<script src="scripts/randomRecipe.js"></script>
 
 <include href="views/footer.html" />
