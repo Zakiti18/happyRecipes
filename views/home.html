@@ -24,9 +24,9 @@ This is the home page for our 328 project
 
             <!-- Random Food Button -->
             <div class="text-center w-25 mx-auto">
-                <p class="lead">Can't decide what to make? <br> Try a random recipe!</p>
+                <p class="lead">Can't decide what to make? Here's a button to provide some inspiration!<br></p>
                 <button type="button" class="btn btn-primary" id="randomRecipeBtn"
-                        data-toggle="modal" data-target="#randomRecipe">Gimme a Recipe!</button>
+                        data-toggle="modal" data-target="#randomRecipe">Find a random food!</button>
             </div> <!-- Random Food Button END -->
 
             <!-- Random Food Modal -->
@@ -40,13 +40,8 @@ This is the home page for our 328 project
                             </button>
                         </div>
                         <div class="modal-body">
-                            <h6>Description:</h6>
-                            <p>PLACEHOLDER</p>
-                            <hr>
-                            <h6>Ingredients:</h6>
-                            <ul>
-                                <li>PLACEHOLDER</li>
-                            </ul>
+                            <h6>Nutrients:</h6>
+                            <div id="foodNutrients"></div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
