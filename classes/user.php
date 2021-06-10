@@ -17,6 +17,7 @@ class User
     private $_username;
     private $_password;
     private $_email;
+    private $_favorites;
 
     // methods
     /**
@@ -105,5 +106,25 @@ class User
     public function getEmail()
     {
         return $this->_email;
+    }
+
+    /**
+     * The users favorite recipes
+     *
+     * @return Recipe[]
+     */
+    public function getFavorites()
+    {
+        return $this->_favorites;
+    }
+
+    /**
+     * Sets the users favorite recipes (should never reset the id in the database)
+     *
+     * @param Recipe[] $favorites what $_favorites is being set to
+     */
+    public function setFavorites($favorites)
+    {
+        $this->_favorites = $favorites;
     }
 }

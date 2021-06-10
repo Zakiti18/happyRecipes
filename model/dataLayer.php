@@ -65,7 +65,13 @@ class DataLayer
      */
     function getUser($username){
         // 1. Define the query
-        $sql = "SELECT * FROM hr_users WHERE user_name = :uName";
+        // when no information is entered, get all users (used by admin)
+        if(empty($username)){
+            $sql = "SELECT * FROM hr_users";
+        }
+        else{
+            $sql = "SELECT * FROM hr_users WHERE user_name = :uName";
+        }
 
         // 2. Prepare the statement
         $statement = $this->_dbh->prepare($sql);
@@ -74,10 +80,7 @@ class DataLayer
         $statement->bindParam(':uName', $username, PDO::PARAM_STR);
 
         // 4. Execute the query
-        // if the user does not exist return false
-        if(!$statement->execute()){
-            return false;
-        }
+        $statement->execute();
 
         // 5. Process the results (build the user)
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -103,30 +106,45 @@ class DataLayer
             $user = new User($fName, $lName, $userName, $passWord, $email);
         }
         $user->setUserId($userId);
+        $user->setFavorites($this->getAllFavorites($user));
 
         // return the user object
-        return $user;
+        // when no information is entered, get all users (used by admin)
+        if(empty($username)){
+            return $result;
+        }
+        else{
+            return $user;
+        }
     }
 
     /**
      * Searches through the database for a recipe that shares the given recipe name
      * and builds a Recipe object using the information from the database.
      *
-     * @param $recipe_name String the name of a recipe
+     * @param $recipe_info String the name of a recipe
      * @return Recipe a Recipe object with information from the database
      */
-    function getRecipe($recipe_name)
+    function getRecipe($recipe_info)
     {
         // 1. Define the query
-        $sql = "SELECT * FROM hr_recipes, hr_users
+        // allows search by name and/or id
+        if(!is_numeric($recipe_info)){
+            $sql = "SELECT * FROM hr_recipes, hr_users
                 WHERE hr_recipes.userId = hr_users.userId
-                AND hr_recipes.recipe_name = :rName";
+                AND hr_recipes.recipe_name = :rInfo";
+        }
+        else{
+            $sql = "SELECT * FROM hr_recipes, hr_users
+                WHERE hr_recipes.userId = hr_users.userId
+                AND hr_recipes.recipe_id = :rInfo";
+        }
 
         // 2. Prepare the statement
         $statement = $this->_dbh->prepare($sql);
 
         // 3. Bind the parameters
-        $statement->bindParam(':rName', $recipe_name, PDO::PARAM_STR);
+        $statement->bindParam(':rInfo', $recipe_info, PDO::PARAM_STR);
 
         // 4. Execute the query
         $statement->execute();
@@ -134,6 +152,7 @@ class DataLayer
         // 5. Process the results (build the recipe)
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         foreach ($result as $row){
+            $recipe_id = $row['recipe_id'];
             $recipe_name = $row['recipe_name'];
             $recipe_description = $row['recipe_description'];
             $recipe_image = $row['recipe_image'];
@@ -156,7 +175,7 @@ class DataLayer
                 if($decipher[$i + 1] != " "){
                     // if the next index is a number we know we're looking at a double digit
                     // so we concatenate both the current index and the next
-                    array_push($ingredients, $this->getIngredient($decipher[$i]) . $this->getIngredient($decipher[$i + 1]));
+                    array_push($ingredients, $this->getIngredient($decipher[$i] . $decipher[$i + 1]));
                     // and increment the loop an extra time because we just used two indexes rather than one
                     $i++;
                     // if the last two indexes make up a double digit then that extra increment will
@@ -174,7 +193,9 @@ class DataLayer
         }
 
         // Saving this to an object
-        return new Recipe($recipe_name, $recipe_description, $recipe_image, $ingredients, $userName);
+        $recipe = new Recipe($recipe_name, $recipe_description, $recipe_image, $ingredients, $userName);
+        $recipe->setRecipeId($recipe_id);
+        return $recipe;
     }
 
     /**
@@ -192,7 +213,7 @@ class DataLayer
         $statement = $this->_dbh->prepare($sql);
 
         // 3. Bind the parameters
-        $statement->bindParam(':iId', $ingredientId, PDO::PARAM_STR);
+        $statement->bindParam(':iId', $ingredientId, PDO::PARAM_INT);
 
         // 4. Execute the query
         $statement->execute();
@@ -207,21 +228,96 @@ class DataLayer
         return $result[0]['ingredient_name'];
     }
 
-    function favorite($recipe_name)
+    /**
+     * Adds the recipe id of the recipe to the end of the users current
+     * favorite recipes list.
+     *
+     * @param $user User The user we're adding the recipe to as a favorite
+     * @param $recipe Recipe The recipe that we'll get the id of
+     * @return string
+     */
+    function addToFavorites($user, $recipe)
+    {
+        // concatenate the new favorite recipes id to the end of the users current
+        // favorites list, also adds a space before the id in case the id is a double digit
+        $updatedFavorites = $this->getFavoritesCode($user) . " " . $recipe->getRecipeId();
+        $userId = $user->getUserId();
+
+        // 1. Define the query
+        $sql = "UPDATE hr_users SET favorites_code = '$updatedFavorites' WHERE userId = '$userId'";
+
+        // 2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        // 4. Execute the query
+        if($statement->execute()){
+            return "Added!";
+        }
+        return "Error adding.";
+    }
+
+    /**
+     * Deciphers the users favorite_code and converts it into an array
+     * of recipe objects.
+     *
+     * @param $user User The user we're getting the favorites of
+     * @return array The array of recipe objects
+     */
+    function getAllFavorites($user)
+    {
+        // gets the favorite_code and turns it into an array
+        $code = str_split($this->getFavoritesCode($user));
+        // initialize the array that will be returned
+        $favorites = array();
+
+        // loop through the code
+        for($i = 0; $i < sizeof($code); $i++){
+            // skip spaces
+            if($code[$i] != " "){
+                // if two digits are not separated by a space, its a double digit number
+                if($code[$i + 1] != " "){
+                    // push a recipe object that's made using the id
+                    array_push($favorites, $this->getRecipe($code[$i] . $code[$i + 1]));
+                    $i++;
+
+                    // if the last id is a double digit, avoid null pointer
+                    if($i >= sizeof($code)){
+                        break;
+                    }
+                }
+                // push a recipe object that's made using the id
+                else{
+                    array_push($favorites, $this->getRecipe($code[$i]));
+                }
+            }
+        }
+
+        return $favorites;
+    }
+
+    /**
+     * Returns the frankeincode that Phillip made up, can be converted into recipes based on id.
+     *
+     * @param $user - User The user we're getting the favorite code from
+     * @return int The favorite_code of the user
+     */
+    function getFavoritesCode($user)
     {
         // 1. Define the query
-        $sql = "MAKE NEW COLUMN IN USERS WITH RECIPE_NAME AS VALUE";
+        $sql = "SELECT * FROM hr_users WHERE userId = :uId";
 
         // 2. Prepare the statement
         $statement = $this->_dbh->prepare($sql);
 
         // 3. Bind the parameters
-        $statement->bindParam(':rName', $recipe_name, PDO::PARAM_STR);
+        $statement->bindParam(':uId', $user->getUserId(), PDO::PARAM_INT);
 
         // 4. Execute the query
         $statement->execute();
 
         // 5. Process the results
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result[0]['favorites_code'];
     }
 }

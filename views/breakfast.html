@@ -26,7 +26,14 @@ This is the page for the breakfast category in our 328 project
                         Feeds 1 mouth!<br>
                         Check it out!
                     </p>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#breakfastRecipe1">See the Recipe!</button>
+                    <button type="button" class="btn btn-primary d-inline" data-toggle="modal" data-target="#breakfastRecipe1">See the Recipe!</button>
+
+                    <!-- Favorite button -->
+                    <check if="{{ !empty(@SESSION.user) && !(@SESSION.user instanceof Admin) }}">
+                        <form method="post" action="#" class="d-inline">
+                            <button type="submit" class="btn btn-sm btn-outline-warning">{{@favorite}}</button>
+                        </form>
+                    </check>
                 </div>
             </div> <!-- Card 1 END -->
 
@@ -41,7 +48,7 @@ This is the page for the breakfast category in our 328 project
                             </button>
                         </div>
                         <div class="modal-body">
-                            <img class="rounded w-100 h-100 mb-2" src="{{@recipe->getRecipeImage()}}" alt="cheesy scrambled eggs with bread and fruit">
+                            <img class="rounded w-100 h-100 mb-2" src="{{@recipe->getRecipeImage()}}" alt="{{@recipe->getName()}}">
                             <h6>Description:</h6>
                             <p>{{@recipe->getDescription()}}</p>
                             <hr>

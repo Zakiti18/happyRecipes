@@ -7,6 +7,8 @@ This is the profile page for our 328 project
 
 <include href="views/header.html" />
 
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+
 <!-- Main -->
 <main role="main">
     <!-- Container -->
@@ -26,18 +28,74 @@ This is the profile page for our 328 project
                 <!-- if the user is an admin -->
                 <true>
                     <p>Welcome back Admin {{ @SESSION.user->getFName() }}!</p>
-                    <!-- ability to add, remove and edit database related things go here -->
+
+                    <table id="admTbl">
+                        <thead>
+                            <tr>
+                                <td>userId</td>
+                                <td>isAdmin</td>
+                                <td>firstName</td>
+                                <td>lastName</td>
+                                <td>user_name</td>
+                                <td>pass_word</td>
+                                <td>email</td>
+                                <td>favorites_code</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <repeat group="{{@users}}" value="{{@user}}">
+                                <tr>
+                                    <td>{{@user["userId"]}}</td>
+                                    <td>{{@user["isAdmin"]}}</td>
+                                    <td>{{@user["firstName"]}}</td>
+                                    <td>{{@user["lastName"]}}</td>
+                                    <td>{{@user["user_name"]}}</td>
+                                    <td>{{@user["pass_word"]}}</td>
+                                    <td>{{@user["email"]}}</td>
+                                    <td>{{@user["favorites_code"]}}</td>
+                                </tr>
+                            </repeat>
+                        </tbody>
+                    </table>
                 </true>
 
                 <!-- if the user is not an admin -->
                 <false>
-                    <p>Welcome back {{ @SESSION.user->getFName() }}!</p>
-                    <!-- ability to favorite and un-favorite recipes go here -->
+                    <div class="text-center mb-3">
+                        <h4>Welcome back {{ @SESSION.user->getFName() }}!</h4>
+                        <p>Here are your favorite recipes!</p>
+                    </div>
+
+                    <div class="text-center">
+                        <repeat group="{{@recipes}}" value="{{@recipe}}">
+                            <!-- Card -->
+                            <div class="card text-center w-25 mx-1 d-inline-flex">
+                                <img class="card-img-top w-100 h-100" src="{{@recipe->getRecipeImage()}}" alt="{{@recipe->getName()}}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{@recipe->getName()}}</h5>
+                                    <p class="card-text">
+                                        Takes 10 Minutes to make!<br>
+                                        Feeds 1 mouth!<br>
+                                        Check it out!
+                                    </p>
+                                    <button type="button" class="btn btn-primary d-inline">See the Recipe!</button>
+
+                                    <form method="post" action="#" class="d-inline">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">Unfavorite</button>
+                                    </form>
+                                </div>
+                            </div> <!-- Card END -->
+                        </repeat>
+                    </div>
                 </false>
             </check> <!-- Admin Check END -->
 
         </div> <!-- Jumbotron END -->
     </div> <!-- Container END -->
 </main> <!-- Main END -->
+
+<script src="//code.jquery.com/jquery.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script> $('#admTbl').DataTable(); </script>
 
 <include href="views/footer.html" />

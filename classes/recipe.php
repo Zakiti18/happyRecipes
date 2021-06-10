@@ -11,6 +11,7 @@
 class Recipe
 {
     // fields
+    private $_recipe_id;
     private $_name;
     private $_description;
     private $_recipeImage;
@@ -34,6 +35,26 @@ class Recipe
         $this->_recipeImage = $_recipeImage;
         $this->_ingredients = $_ingredients;
         $this->_submittedBy = $_submittedBy;
+    }
+
+    /**
+     * The recipe id
+     *
+     * @return int the recipes id in the database
+     */
+    public function getRecipeId()
+    {
+        return $this->_recipe_id;
+    }
+
+    /**
+     * Sets the recipe id (should never reset the id in the database)
+     *
+     * @param int $recipe_id the recipes id in the database
+     */
+    public function setRecipeId($recipe_id)
+    {
+        $this->_recipe_id = $recipe_id;
     }
 
     /**

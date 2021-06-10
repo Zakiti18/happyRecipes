@@ -53,7 +53,7 @@ $f3->route('GET /categories', function(){
 });
 
 // Breakfast route
-$f3->route('GET /breakfast', function(){
+$f3->route('GET|POST /breakfast', function(){
     $GLOBALS["con"]->breakfast();
 });
 

@@ -217,9 +217,20 @@ class Controller
     {
         // get the recipe
         $recipe = $GLOBALS['dataLayer']->getRecipe("Cheesy Scrambled Eggs");
-
         // add the recipe to the hive
         $this->_f3->set('recipe', $recipe);
+
+        // initializes the text for the favorite button
+        $added = "Favorite!";
+
+        // if the favorite button has been pushed page will be from post
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $user = $_SESSION['user'];
+            $added = $GLOBALS['dataLayer']->addToFavorites($user, $recipe);
+        }
+
+        // saves what text to have in the favorite button into the hive
+        $this->_f3->set('favorite', $added);
 
         // Display a specific category page
         $view = new Template();
@@ -378,13 +389,16 @@ class Controller
      */
     function profile()
     {
+        // grab the user from the session
         $user = $_SESSION['user'];
 
+        // display changes depending on if the user is an admin or not
         if($user instanceof Admin){
-            // ability to add, remove and edit database related things go here
+            $users = $GLOBALS['dataLayer']->getUser("");
+            $this->_f3->set('users', $users);
         }
         else{
-            // ability to favorite and un-favorite recipes go here
+            $this->_f3->set('recipes', $user->getFavorites());
         }
 
         // Display the profile page

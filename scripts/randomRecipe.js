@@ -9,7 +9,7 @@ $("#randomRecipeBtn").on("click", function(){
     // define an array of parameters for the call to the API
     let params = {
         "api_key": key,
-        "pageNumber": randomPageNumber,
+        "pageNumber": randomPageNumber
     };
 
     // read from the API
