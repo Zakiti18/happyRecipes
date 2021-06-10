@@ -17,6 +17,10 @@ class Recipe
     private $_recipeImage;
     private $_ingredients;
     private $_submittedBy;
+    private $_cook_time;
+    private $_feeds;
+    private $_category;
+
 
     // methods
     /**
@@ -105,5 +109,55 @@ class Recipe
     public function getSubmittedBy()
     {
         return $this->_submittedBy;
+    }
+
+    /**
+     * Get the time required to cook
+     *
+     * @return mixed
+     */
+    public function getCookTime()
+    {
+        return $this->_cook_time;
+    }
+
+    /**
+     * @param mixed $cook_time
+     */
+    public function setCookTime($cook_time): void
+    {
+        $this->_cook_time = $cook_time;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFeeds()
+    {
+        return $this->_feeds;
+    }
+
+    /**
+     * @param mixed $feeds
+     */
+    public function setFeeds($feeds): void
+    {
+        $this->_feeds = $feeds;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategory()
+    {
+        return $this->_category;
+    }
+
+    /**
+     * @param mixed $category
+     */
+    public function setCategory($category): void
+    {
+        $this->_category = $category;
     }
 }

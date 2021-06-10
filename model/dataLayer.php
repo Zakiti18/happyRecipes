@@ -158,6 +158,9 @@ class DataLayer
             $recipe_image = $row['recipe_image'];
             $recipe_code = $row['recipe_code'];
             $userName = $row['firstName'] . " " . $row['lastName'];
+            $cook_time = $row['cook_time'];
+            $feeds = $row['feeds'];
+            $category = $row['category'];
         }
 
         // we need to decipher the recipe_code into the ingredients
@@ -195,6 +198,9 @@ class DataLayer
         // Saving this to an object
         $recipe = new Recipe($recipe_name, $recipe_description, $recipe_image, $ingredients, $userName);
         $recipe->setRecipeId($recipe_id);
+        $recipe->setCookTime($cook_time);
+        $recipe->setFeeds($feeds);
+        $recipe->setCategory($category);
         return $recipe;
     }
 
