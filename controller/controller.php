@@ -22,7 +22,7 @@ class Controller
     }
 
     // default route
-
+    // and the home route
     /**
      * Displays the home page.
      */

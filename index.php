@@ -23,7 +23,7 @@ $f3 = Base::instance();
 $con = new Controller($f3);
 $dataLayer = new DataLayer();
 
-// Define default route
+// Define the default route
 $f3->route('GET /', function(){
     $GLOBALS["con"]->home();
 });
