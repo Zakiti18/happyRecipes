@@ -69,20 +69,20 @@ This is the profile page for our 328 project
                     <div class="text-center">
                         <repeat group="{{@recipes}}" value="{{@recipe}}">
                             <!-- Card -->
-                            <div class="card text-center w-25 mx-1 d-inline-flex">
+                            <div class="card text-center w-25 mx-1 my-2 d-inline-flex">
                                 <img class="card-img-top w-100 h-100" src="{{@recipe->getRecipeImage()}}" alt="{{@recipe->getName()}}">
                                 <div class="card-body">
                                     <h5 class="card-title">{{@recipe->getName()}}</h5>
                                     <p class="card-text">
-                                        Takes 10 Minutes to make!<br>
-                                        Feeds 1 mouth!<br>
+                                        Takes {{@recipe->getCookTime()}} minutes to make!<br>
+                                        Feeds {{@recipe->getFeeds()}} mouth(s)!<br>
                                         Check it out!
                                     </p>
-                                    <button type="button" class="btn btn-primary d-inline">See the Recipe!</button>
+                                    <a href="{{@recipe->getCategory()}}" class="btn btn-primary d-inline">See the Recipe!</a>
 
-                                    <form method="post" action="#" class="d-inline">
+                                    <!--<form method="post" action="#" class="d-inline">-->
                                         <button type="submit" class="btn btn-sm btn-outline-danger">Unfavorite</button>
-                                    </form>
+                                    <!--</form>-->
                                 </div>
                             </div> <!-- Card END -->
                         </repeat>

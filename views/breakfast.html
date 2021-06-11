@@ -22,8 +22,8 @@ This is the page for the breakfast category in our 328 project
                 <div class="card-body">
                     <h5 class="card-title">{{@recipe->getName()}}</h5>
                     <p class="card-text">
-                        Takes 10 Minutes to make!<br>
-                        Feeds 1 mouth!<br>
+                        Takes {{@recipe->getCookTime()}} minutes to make!<br>
+                        Feeds {{@recipe->getFeeds()}} mouths!<br>
                         Check it out!
                     </p>
                     <button type="button" class="btn btn-primary d-inline" data-toggle="modal" data-target="#breakfastRecipe1">See the Recipe!</button>

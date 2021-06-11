@@ -61,16 +61,23 @@ This is the home page for our 328 project Happy Recipes
 
             <!-- Card 1 -->
             <div class="card text-center w-25 mx-1">
-                <img class="card-img-top" src="images/SloppyJoe.jpg" alt="sloppy joes">
+                <img class="card-img-top" src="{{@recipes[0]->getRecipeImage()}}" alt="{{@recipes[0]->getName()}}">
                 <div class="card-body">
-                    <h5 class="card-title">Ballpark Style Sloppy Joes</h5>
+                    <h5 class="card-title">{{@recipes[0]->getName()}}</h5>
                     <p class="card-text">
-                        Prep: 10min<br>
-                        Cook: 30min<br>
-                        Calories: 890<br>
-                        Feeds: 2
+                        Takes {{@recipes[0]->getCookTime()}} minutes to make!<br>
+                        Feeds {{@recipes[0]->getFeeds()}} mouths!<br>
+                        Check it out!
                     </p>
                     <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#sloppyJoe">See the Recipe!</button>
+
+                    <!-- Favorite button -->
+                    <check if="{{ !empty(@SESSION.user) && !(@SESSION.user instanceof Admin) }}">
+                        <form method="post" action="#" class="d-inline">
+                            <button type="submit" class="btn btn-sm btn-outline-warning"
+                                    name="favBtn" value="0">{{@favorite1}}</button>
+                        </form>
+                    </check>
                 </div>
             </div> <!-- Card 1 END -->
             <!-- Card 1 Modal -->
@@ -78,32 +85,30 @@ This is the home page for our 328 project Happy Recipes
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Ballpark Style Sloppy Joes with Mozzarella Cheese, Green Pepper & Potato Wedges</h5>
+                            <h5 class="modal-title">{{@recipes[0]->getName()}}</h5>
                             <button type="button" class="close rounded-circle" data-dismiss="modal">
                                 <span>X</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <img class="rounded w-100 h-100 mb-2" src="images/SloppyJoe.jpg" alt="sloppy joes">
+                            <img class="rounded w-100 h-100 mb-2" src="{{@recipes[0]->getRecipeImage()}}" alt="{{@recipes[0]->getName()}}">
                             <h6>Description:</h6>
-                            <p>Tired of the same ol' Sloppy Joes that ma' makes? Us too, these Ballpark Style Sloppy
-                            Joes are the real deal! We'll show you how to create an amazing ketchup and mustard spiked
-                                sauce that will bring back the best memories of your childhood.</p>
+                            <p>{{@recipes[0]->getDescription()}}</p>
                             <hr>
                             <h6>Ingredients:</h6>
                             <ul>
-                                <li>12oz of Yukon Gold Potatoes</li>
-                                <li>1 Yellow Onion</li>
-                                <li>1 Green Pepper</li>
-                                <li>1 Clove of Garlic</li>
-                                <li>2TBSP of Ketchup</li>
-                                <li>2tsp of Dijon Mustard</li>
-                                <li>6ml Beef Stock Concentrate</li>
-                                <li>6ml Ponzu Sauce</li>
-                                <li>1TBSP Cornstarch</li>
-                                <li>10oz Ground Beef</li>
-                                <li>1/2 cup Mozzarella Cheese</li>
-                                <li>2 Potato Buns</li>
+                                <li>12oz of {{@recipes[0]->getIngredients()[0]}}</li>
+                                <li>1 {{@recipes[0]->getIngredients()[1]}}</li>
+                                <li>1 {{@recipes[0]->getIngredients()[2]}}</li>
+                                <li>1 Clove of {{@recipes[0]->getIngredients()[3]}}</li>
+                                <li>2TBSP of {{@recipes[0]->getIngredients()[4]}}</li>
+                                <li>2tsp of {{@recipes[0]->getIngredients()[5]}}</li>
+                                <li>6ml {{@recipes[0]->getIngredients()[6]}}</li>
+                                <li>6ml {{@recipes[0]->getIngredients()[7]}}</li>
+                                <li>1TBSP {{@recipes[0]->getIngredients()[8]}}</li>
+                                <li>10oz {{@recipes[0]->getIngredients()[9]}}</li>
+                                <li>1/2 cup {{@recipes[0]->getIngredients()[10]}}</li>
+                                <li>2 {{@recipes[0]->getIngredients()[11]}}</li>
                             </ul>
                             <hr>
                             <h6>Steps:</h6>
@@ -121,6 +126,7 @@ This is the home page for our 328 project Happy Recipes
                             </ol>
                         </div>
                         <div class="modal-footer">
+                            <p>(Submitted by: {{@recipes[0]->getSubmittedBy()}})</p>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -130,16 +136,23 @@ This is the home page for our 328 project Happy Recipes
 
             <!-- Card 2 -->
             <div class="card text-center w-25 mx-1">
-                <img class="card-img-top" src="images/tmpDish.jpg" alt="penne dish">
+                <img class="card-img-top" src="{{@recipes[1]->getRecipeImage()}}" alt="{{@recipes[1]->getName()}}">
                 <div class="card-body">
-                    <h5 class="card-title">Turkey Meatball Penne</h5>
+                    <h5 class="card-title">{{@recipes[1]->getName()}}</h5>
                     <p class="card-text">
-                        Prep: 5min<br>
-                        Cook: 20min<br>
-                        Calories: 870<br>
-                        Feeds: 2
+                        Takes {{@recipes[1]->getCookTime()}} minutes to make!<br>
+                        Feeds {{@recipes[1]->getFeeds()}} mouths!<br>
+                        Check it out!
                     </p>
                     <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#tmpDish">See the Recipe!</button>
+
+                    <!-- Favorite button -->
+                    <check if="{{ !empty(@SESSION.user) && !(@SESSION.user instanceof Admin) }}">
+                        <form method="post" action="#" class="d-inline">
+                            <button type="submit" class="btn btn-sm btn-outline-warning"
+                                    name="favBtn" value="1">{{@favorite2}}</button>
+                        </form>
+                    </check>
                 </div>
             </div> <!-- Card 2 END -->
             <!-- Card 2 Modal -->
@@ -147,30 +160,27 @@ This is the home page for our 328 project Happy Recipes
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Turkey Meatball Penne with Tomato Cream Sauce and Parmesan</h5>
+                            <h5 class="modal-title">{{@recipes[1]->getName()}}</h5>
                             <button type="button" class="close rounded-circle" data-dismiss="modal">
                                 <span>X</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <img class="rounded w-100 h-100 mb-2" src="images/tmpDish.jpg" alt="penne dish">
+                            <img class="rounded w-100 h-100 mb-2" src="{{@recipes[1]->getRecipeImage()}}" alt="{{@recipes[1]->getName()}}">
                             <h6>Description:</h6>
-                            <p>It looks like it costs a pretty Penne! This amazing dish will make you feel like
-                            a champion. If you don't try this recipe, it will haunt you daily. With a cook time
-                                of only 20 minutes, we can assure you that you'll be satisfied and getting back to
-                            your busy life in no time!</p>
+                            <p>{{@recipes[1]->getDescription()}}</p>
                             <hr>
                             <h6>Ingredients:</h6>
                             <ul>
-                                <li>1 Shallot</li>
-                                <li>8oz Pre Cooked Meatballs</li>
-                                <li>6oz of Penne Pasta</li>
-                                <li>1 Clove of Garlic</li>
-                                <li>4oz of Cream Sauce Base</li>
-                                <li>1TBSP of Italian Seasoning</li>
-                                <li>1/4 cup of Parmesan Cheese</li>
-                                <li>1tsp of Chili Flakes</li>
-                                <li>3oz of Tomato Paste</li>
+                                <li>1 {{@recipes[1]->getIngredients()[0]}}</li>
+                                <li>8oz {{@recipes[1]->getIngredients()[1]}}</li>
+                                <li>6oz of {{@recipes[1]->getIngredients()[2]}}</li>
+                                <li>1 Clove of {{@recipes[1]->getIngredients()[3]}}</li>
+                                <li>4oz of {{@recipes[1]->getIngredients()[4]}}</li>
+                                <li>1TBSP of {{@recipes[1]->getIngredients()[5]}}</li>
+                                <li>1/4 cup of {{@recipes[1]->getIngredients()[6]}}</li>
+                                <li>1tsp of {{@recipes[1]->getIngredients()[7]}}</li>
+                                <li>3oz of {{@recipes[1]->getIngredients()[8]}}</li>
                             </ul>
                             <hr>
                             <h6>Steps:</h6>
@@ -186,6 +196,7 @@ This is the home page for our 328 project Happy Recipes
                             </ol>
                         </div>
                         <div class="modal-footer">
+                            <p>(Submitted by: {{@recipes[1]->getSubmittedBy()}})</p>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -195,16 +206,23 @@ This is the home page for our 328 project Happy Recipes
 
             <!-- Card 3 -->
             <div class="card text-center w-25 mx-1">
-                <img class="card-img-top" src="images/Tostadas.jpg" alt="tostada dish">
+                <img class="card-img-top" src="{{@recipes[2]->getRecipeImage()}}" alt="{{@recipes[2]->getName()}}">
                 <div class="card-body">
-                    <h5 class="card-title">Beef & Cheese Tostadas</h5>
+                    <h5 class="card-title">{{@recipes[2]->getName()}}</h5>
                     <p class="card-text">
-                        Prep: 10min<br>
-                        Cook: 40min<br>
-                        Calories: 960<br>
-                        Feeds: 2
+                        Takes {{@recipes[2]->getCookTime()}} minutes to make!<br>
+                        Feeds {{@recipes[2]->getFeeds()}} mouths!<br>
+                        Check it out!
                     </p>
                     <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#Tostadas">See the Recipe!</button>
+
+                    <!-- Favorite button -->
+                    <check if="{{ !empty(@SESSION.user) && !(@SESSION.user instanceof Admin) }}">
+                        <form method="post" action="#" class="d-inline">
+                            <button type="submit" class="btn btn-sm btn-outline-warning"
+                                    name="favBtn" value="2">{{@favorite3}}</button>
+                        </form>
+                    </check>
                 </div>
             </div> <!-- Card 3 END -->
             <!-- Card 3 Modal -->
@@ -212,34 +230,31 @@ This is the home page for our 328 project Happy Recipes
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Beef & Cheese Tostadas with green peppers, tomato salsa and hot sauce crema</h5>
+                            <h5 class="modal-title">{{@recipes[2]->getName()}}</h5>
                             <button type="button" class="close rounded-circle" data-dismiss="modal">
                                 <span>X</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <img class="rounded w-100 h-100 mb-2" src="images/Tostadas.jpg" alt="tostada dish">
+                            <img class="rounded w-100 h-100 mb-2" src="{{@recipes[2]->getRecipeImage()}}" alt="{{@recipes[2]->getName()}}">
                             <h6>Description:</h6>
-                            <p>These Tostadas are nothing like the food at your local Mexican restaurant.
-                            These are high quality, great tasting, round UFO's of awesomeness! We bet you can't eat just one, no
-                            really we bet you $25 dollars you can't eat just one! (Sign up to receive weekly recipes for a chance to win a
-                                $25 dollar giftcard, restrictions apply)</p>
+                            <p>{{@recipes[2]->getDescription()}}</p>
                             <hr>
                             <h6>Ingredients:</h6>
                             <ul>
-                                <li>1 Roma Tomato</li>
-                                <li>1/4oz of Cilantro</li>
-                                <li>1 Yellow Onion</li>
-                                <li>1 Lime</li>
-                                <li>1 Green Pepper</li>
-                                <li>4TBSP of Sour Cream</li>
-                                <li>6ml Beef Stock Concentrate</li>
-                                <li>1tsp of Hot Sauce</li>
-                                <li>1TBSP of Southwest Spice Blend</li>
-                                <li>10oz Ground Beef</li>
-                                <li>1tsp of Chili Powder</li>
-                                <li>6 Flour Tortillas</li>
-                                <li>1/2cup of Mexican Cheese Blend</li>
+                                <li>1 {{@recipes[2]->getIngredients()[0]}}</li>
+                                <li>1/4oz of {{@recipes[2]->getIngredients()[1]}}</li>
+                                <li>1 {{@recipes[2]->getIngredients()[2]}}</li>
+                                <li>1 {{@recipes[2]->getIngredients()[3]}}</li>
+                                <li>1 {{@recipes[2]->getIngredients()[4]}}</li>
+                                <li>4TBSP of {{@recipes[2]->getIngredients()[5]}}</li>
+                                <li>6ml {{@recipes[2]->getIngredients()[6]}}</li>
+                                <li>1tsp of {{@recipes[2]->getIngredients()[7]}}</li>
+                                <li>1TBSP of {{@recipes[2]->getIngredients()[8]}}</li>
+                                <li>10oz {{@recipes[2]->getIngredients()[9]}}</li>
+                                <li>1tsp of {{@recipes[2]->getIngredients()[10]}}</li>
+                                <li>6 {{@recipes[2]->getIngredients()[11]}}</li>
+                                <li>1/2cup of {{@recipes[2]->getIngredients()[12]}}</li>
                             </ul>
                             <hr>
                             <h6>Steps:</h6>
@@ -254,6 +269,7 @@ This is the home page for our 328 project Happy Recipes
                             </ol>
                         </div>
                         <div class="modal-footer">
+                            <p>(Submitted by: {{@recipes[2]->getSubmittedBy()}})</p>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>

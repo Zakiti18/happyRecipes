@@ -28,6 +28,39 @@ class Controller
      */
     function home()
     {
+        // array of this weeks favorite recipes
+        $recipes = array($GLOBALS['dataLayer']->getRecipe(2), $GLOBALS['dataLayer']->getRecipe(3),
+            $GLOBALS['dataLayer']->getRecipe(4));
+
+        // add the recipes array to the hive
+        $this->_f3->set('recipes', $recipes);
+
+        // initializes the text for the favorite button
+        $added1 = "Favorite!";
+        $added2 = "Favorite!";
+        $added3 = "Favorite!";
+
+        // if the favorite button has been pushed page will be from post
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $user = $_SESSION['user'];
+            $GLOBALS['dataLayer']->addToFavorites($user, $recipes[$_POST['favBtn']]);
+
+            if($_POST['favBtn'] == 0){
+                $added1 = "Added!";
+            }
+            elseif($_POST['favBtn'] == 1){
+                $added2 = "Added!";
+            }
+            else{
+                $added3 = "Added!";
+            }
+        }
+
+        // saves what text to have in the favorite button into the hive
+        $this->_f3->set('favorite1', $added1);
+        $this->_f3->set('favorite2', $added2);
+        $this->_f3->set('favorite3', $added3);
+
         // Displays the home page
         $view = new Template();
         echo $view->render('views/home.html');
@@ -389,16 +422,15 @@ class Controller
      */
     function profile()
     {
-        // grab the user from the session
-        $user = $_SESSION['user'];
-
         // display changes depending on if the user is an admin or not
-        if($user instanceof Admin){
+        if($_SESSION['user'] instanceof Admin){
             $users = $GLOBALS['dataLayer']->getUser("");
             $this->_f3->set('users', $users);
         }
         else{
-            $this->_f3->set('recipes', $user->getFavorites());
+            // resets the user in the session to match the users database info
+            $_SESSION['user'] = $GLOBALS['dataLayer']->getUser($_SESSION['user']->getUsername());
+            $this->_f3->set('recipes', $_SESSION['user']->getFavorites());
         }
 
         // Display the profile page

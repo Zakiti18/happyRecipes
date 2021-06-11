@@ -24,12 +24,12 @@ $con = new Controller($f3);
 $dataLayer = new DataLayer();
 
 // Define the default route
-$f3->route('GET /', function(){
+$f3->route('GET|POST /', function(){
     $GLOBALS["con"]->home();
 });
 
 // Home route
-$f3->route('GET /home', function(){
+$f3->route('GET|POST /home', function(){
     $GLOBALS["con"]->home();
 });
 
