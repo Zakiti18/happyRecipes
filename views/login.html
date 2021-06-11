@@ -30,7 +30,8 @@ This is the login page for our 328 project
                                 <input type="text" class="form-control"
                                        id="username" name="username" value="{{ @username }}">
                             <!-- JavaScript Validation -->
-                            <span class="err" id="err-username">Usernames must be 3 or more characters and not already in use</span>
+                            <span class="err" id="err-username">Usernames must be 3 or more
+                                characters and not already in use</span>
                             <!-- PHP Validation -->
                             <check if="{{ isset(@errors['username']) }}">
                                 <span class="text-danger">{{ @errors['username'] }}</span>

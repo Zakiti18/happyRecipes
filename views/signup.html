@@ -93,7 +93,8 @@ This is the sign up page for our 328 project
                                 <input type="email" class="form-control" id="email"
                                        placeholder="someone@domain.com" name="email" value="{{ @email }}">
                             <!-- JavaScript Validation -->
-                            <span class="err" id="err-email">Please Enter a Valid Email That Contains "@" and "."</span>
+                            <span class="err" id="err-email">Please Enter a Valid Email That
+                                Contains "@" and "."</span>
                             <!-- PHP Validation -->
                             <check if="{{ isset(@errors['email']) }}">
                                 <span class="text-danger">{{ @errors['email'] }}</span>

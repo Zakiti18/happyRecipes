@@ -121,7 +121,8 @@ class Controller
             if (Validation::validPhone($userPhone)) {
                 $_SESSION['phoneNum'] = $userPhone;
             } else {
-                $this->_f3->set('errors["PhoneNum"]', 'Please enter a valid phone number with dashes E.g. 253-123-4567');
+                $this->_f3->set('errors["PhoneNum"]',
+                    'Please enter a valid phone number with dashes E.g. 253-123-4567');
             }
 
             // Save the users switch choice

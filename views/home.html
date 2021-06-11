@@ -69,7 +69,8 @@ This is the home page for our 328 project Happy Recipes
                         Feeds {{@recipes[0]->getFeeds()}} mouths!<br>
                         Check it out!
                     </p>
-                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#sloppyJoe">See the Recipe!</button>
+                    <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+                            data-target="#sloppyJoe">See the Recipe!</button>
 
                     <!-- Favorite button -->
                     <check if="{{ !empty(@SESSION.user) && !(@SESSION.user instanceof Admin) }}">
@@ -91,7 +92,8 @@ This is the home page for our 328 project Happy Recipes
                             </button>
                         </div>
                         <div class="modal-body">
-                            <img class="rounded w-100 h-100 mb-2" src="{{@recipes[0]->getRecipeImage()}}" alt="{{@recipes[0]->getName()}}">
+                            <img class="rounded w-100 h-100 mb-2" src="{{@recipes[0]->getRecipeImage()}}"
+                                 alt="{{@recipes[0]->getName()}}">
                             <h6>Description:</h6>
                             <p>{{@recipes[0]->getDescription()}}</p>
                             <hr>
@@ -114,7 +116,8 @@ This is the home page for our 328 project Happy Recipes
                             <h6>Steps:</h6>
                             <ol>
                                 <li>Wash potatoes and cut into 1/2 inch wedges</li>
-                                <li>Toss potatoes on a baking sheet with salt and pepper and a drizzle of olive oil</li>
+                                <li>Toss potatoes on a baking sheet with salt and pepper
+                                    and a drizzle of olive oil</li>
                                 <li>Roast on top rack for 20-25 mins</li>
                                 <li>Thinly slice the green pepper, half the onion and peel and mince garlic</li>
                                 <li>Combine ketchup, mustard, stock, ponzu, cornstarch and 1/3 cup of water in a small
@@ -122,7 +125,8 @@ This is the home page for our 328 project Happy Recipes
                                 <li>Cook veggies over medium to high heat for 4-6 minutes</li>
                                 <li>Cook beef in medium to high heat for 4-6 minutes and add in garlic and sauce</li>
                                 <li>Drizzle mozzarella over the beef until it melts, toast the buns</li>
-                                <li>Place beef and veggies inside the buns and place on a plate with potato wedges and enjoy!</li>
+                                <li>Place beef and veggies inside the buns and place on a plate with
+                                    potato wedges and enjoy!</li>
                             </ol>
                         </div>
                         <div class="modal-footer">
@@ -144,7 +148,8 @@ This is the home page for our 328 project Happy Recipes
                         Feeds {{@recipes[1]->getFeeds()}} mouths!<br>
                         Check it out!
                     </p>
-                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#tmpDish">See the Recipe!</button>
+                    <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+                            data-target="#tmpDish">See the Recipe!</button>
 
                     <!-- Favorite button -->
                     <check if="{{ !empty(@SESSION.user) && !(@SESSION.user instanceof Admin) }}">
@@ -166,7 +171,8 @@ This is the home page for our 328 project Happy Recipes
                             </button>
                         </div>
                         <div class="modal-body">
-                            <img class="rounded w-100 h-100 mb-2" src="{{@recipes[1]->getRecipeImage()}}" alt="{{@recipes[1]->getName()}}">
+                            <img class="rounded w-100 h-100 mb-2" src="{{@recipes[1]->getRecipeImage()}}"
+                                 alt="{{@recipes[1]->getName()}}">
                             <h6>Description:</h6>
                             <p>{{@recipes[1]->getDescription()}}</p>
                             <hr>
@@ -188,9 +194,11 @@ This is the home page for our 328 project Happy Recipes
                                 <li>Boil a large pot of salted water, peel and mince shallot and garlic</li>
                                 <li>Brown the meatballs in a pan with a drizzle of olive oil for 3-5 mins</li>
                                 <li>Cook pasta in large pot for 9-12 mins</li>
-                                <li>Combine shallot, garlic, italian seasoning, chili flakes and tomato paste with 2TBSP
+                                <li>Combine shallot, garlic, italian seasoning,
+                                    chili flakes and tomato paste with 2TBSP
                                 of butter in a pan over medium heat</li>
-                                <li>Add cream sauce and parmesan to the pan for 2-3 mins and season with salt and pepper</li>
+                                <li>Add cream sauce and parmesan to the pan for 2-3 mins and season
+                                    with salt and pepper</li>
                                 <li>Stir in meatballs and penne into pan with sauce</li>
                                 <li>Top with a pinch of parmesan cheese and serve!</li>
                             </ol>
@@ -214,7 +222,8 @@ This is the home page for our 328 project Happy Recipes
                         Feeds {{@recipes[2]->getFeeds()}} mouths!<br>
                         Check it out!
                     </p>
-                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#Tostadas">See the Recipe!</button>
+                    <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+                            data-target="#Tostadas">See the Recipe!</button>
 
                     <!-- Favorite button -->
                     <check if="{{ !empty(@SESSION.user) && !(@SESSION.user instanceof Admin) }}">
@@ -236,7 +245,8 @@ This is the home page for our 328 project Happy Recipes
                             </button>
                         </div>
                         <div class="modal-body">
-                            <img class="rounded w-100 h-100 mb-2" src="{{@recipes[2]->getRecipeImage()}}" alt="{{@recipes[2]->getName()}}">
+                            <img class="rounded w-100 h-100 mb-2" src="{{@recipes[2]->getRecipeImage()}}"
+                                 alt="{{@recipes[2]->getName()}}">
                             <h6>Description:</h6>
                             <p>{{@recipes[2]->getDescription()}}</p>
                             <hr>
@@ -260,12 +270,16 @@ This is the home page for our 328 project Happy Recipes
                             <h6>Steps:</h6>
                             <ol>
                                 <li>Chop tomato, cilantro, onion, lime, and green pepper</li>
-                                <li>Combine tomato, cilantro, sour cream, onion, juice from the lime, salt, pepper and hot sauce into
+                                <li>Combine tomato, cilantro, sour cream, onion, juice from the lime,
+                                    salt, pepper and hot sauce into
                                 a small bowl</li>
-                                <li>Cook beef in a pan for 4-5 mins with southwest spice chili powder and a pinch of salt</li>
-                                <li>Once the beef is browned, add in stock concentrate, green pepper, sliced onion, and a pinch of salt</li>
+                                <li>Cook beef in a pan for 4-5 mins with southwest spice chili powder
+                                    and a pinch of salt</li>
+                                <li>Once the beef is browned, add in stock concentrate, green pepper,
+                                    sliced onion, and a pinch of salt</li>
                                 <li>Bake tortillas with some olive oil on a baking sheet for 4-5 mins</li>
-                                <li>Load tortillas with beef, Mexican cheese, salsa crema and remaining lime juice and enjoy!</li>
+                                <li>Load tortillas with beef, Mexican cheese, salsa crema and remaining lime
+                                    juice and enjoy!</li>
                             </ol>
                         </div>
                         <div class="modal-footer">
