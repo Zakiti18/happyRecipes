@@ -12,9 +12,9 @@ This is the home page for our 328 project Happy Recipes
 
     <!-- Entry to the site -->
     <div class="container px-0">
-        <section class="jumbotron text-center pt-2 pb-4">
-            <h1 class="jumbotron-heading">Welcome to Happy Recipes</h1>
-            <p class="lead text-muted w-50 mx-auto">
+        <section class="jumbotron text-center pt-2 pb-4 ">
+            <h1 class="jumbotron-heading display-3" id="colored">Welcome to Happy Recipes</h1>
+            <p class="lead text-muted w-50 mx-auto" id="tagline">
                 We're here to share all kinds of amazing recipes with the world!
 
                 Whether it be breakfast or dinner, you'll be able to find and even favorite
@@ -24,15 +24,15 @@ This is the home page for our 328 project Happy Recipes
                 we also provide a weekly subscription where we find the perfect recipe for you!
             </p>
             <p>
-                <a href="categories" class="btn btn-primary my-2">Categories Of Recipes</a>
-                <a href="form" class="btn btn-secondary my-2">Receive Weekly Recipes</a>
+                <a href="categories" class="btn my-2"><strong>Categories Of Recipes</strong></a>
+                <a href="form" class="btn my-2"><strong>Receive Weekly Recipes</strong></a>
             </p>
-            <img src="images/randomFood1.jpg" alt="plenty of food">
+            <img class="img-fluid" src="images/homelogo.png" alt="logo" width="500" height="500">
 
             <!-- Random Food Button -->
             <div class="text-center mx-auto">
                 <p class="lead">Can't decide what to make?<br>Here's a button to provide some inspiration!<br></p>
-                <button type="button" class="btn btn-primary" id="randomRecipeBtn"
+                <button type="button" class="btn" id="randomRecipeBtn"
                         data-toggle="modal" data-target="#randomRecipe">Find a random food!</button>
             </div> <!-- Random Food Button END -->
 

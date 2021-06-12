@@ -7,28 +7,79 @@ This is style sheet for our 328 project
 
 /* our styles */
 
+/* body and navbar same color */
 body{
-    background-color: #F1F0EA;
+    background-color: #FF652D;
     font-family: Georgia, serif!important;
 }
-
-.container{
-    background-color: #474448;
+/* button colors */
+.btn {
+    background-color: #FFC738;
+    border: none;
+    color: white;
+    text-align: center;
+    border-radius: 4px;
+    transition-duration: 0.2s;
 }
 
-.navbar{
-    background-color: #F1F0EA!important;
+/* hover colors */
+.btn:hover {
+    background-color: #FF652D;
+    color: white;
 }
 
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.category{
+    color: #FF652D;
+    font-family: Impact, fantasy;
+    font-size: 30px;
+}
+
+/* categories slideshow and description */
 #categories, #slideshow, #description{
     border: 1px solid #00000038;
     border-radius: 5px;
 }
 
-/* added bootstrap styles */
+/* various colors throughout the site */
+#colored, .colored{
+    color: #FF652D;
+    font-family: Impact, fantasy;
+}
 
-:root {
-    --jumbotron-padding-y: 3rem;
+/* container color */
+.container{
+    background-color: #FFC738;
+}
+
+/* Form Styles below */
+.err {
+    color: red;
+    display: none;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+/* footer padding */
+footer {
+    padding-top: 1rem;
+}
+
+/* footer background color */
+footer p {
+    margin-bottom: .25rem;
+    background-color: #FF652D;
+}
+
+/* footer link color */
+#footer{
+    color: #FFC738;
 }
 
 .jumbotron {
@@ -56,31 +107,28 @@ body{
     max-width: 40rem;
 }
 
-footer {
-    padding-top: 1rem;
+.navbar{
+    background-color: #FFC738!important;
 }
 
-footer div {
-    background-color: #F1F0EA!important;
+/* aligns links in nav bar */
+@media (min-width: 992px){
+    .navbar-expand-lg .navbar-collapse {
+        display: flex;
+        flex-basis: auto;
+        align-content: center;
+        align-items: baseline;
+        justify-content: space-around;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
 }
 
-footer p {
-    margin-bottom: .25rem;
-    background-color: #F1F0EA;
+/* added bootstrap styles */
+:root {
+    --jumbotron-padding-y: 3rem;
 }
 
-.box-shadow {
-    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-/* Form Styles below, we can edit this later */
-
-.err {
-    color: red;
-    display: none;
-}
-
-.error {
-    color: red;
-    font-weight: bold;
+#tagline{
+    font-size: 20px;
 }

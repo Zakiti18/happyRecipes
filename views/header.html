@@ -6,7 +6,7 @@ This is the header for all of our pages to include on our 328 project
 -->
 
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -27,11 +27,11 @@ This is the header for all of our pages to include on our 328 project
     <!-- Header -->
     <header>
         <!-- Navbar -->
-        <div class="navbar navbar-dark bg-dark">
+        <div class="container">
             <!-- Container -->
-            <div class="container d-flex justify-content-between">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <!-- Website Name and Home Button -->
-                <a href="{{@BASE}}" class="navbar-brand d-flex align-items-center">
+                <a href="{{@BASE}}" class="navbar-brand align-items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                          class="bi bi-layout-text-sidebar-reverse mx-2" viewBox="0 0 16 16">
                         <path d="M12.5 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm0 3a.5.5 0 0 1 0 1h-5a.5.5
@@ -43,35 +43,49 @@ This is the header for all of our pages to include on our 328 project
                     </svg>
                     <strong>Happy Recipes</strong>
                 </a><!-- Website Name and Home Button END -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+                <!-- Categories Button -->
+                <a href="categories" class="text-nowrap text-decoration-none text-white">
+                    <p class="my-0">Categories</p>
+                </a>
+
+                <!-- sign up for weekly recipes Button -->
+                <a href="form" class="text-nowrap text-decoration-none text-white">
+                    <p class="my-0">Receive Weekly Recipes</p>
+                </a>
 
                 <!-- Navigation Based on if the User is logged in or not -->
-                <div class="row mx-2">
                     <check if="{{ empty(@SESSION.user) }}">
                         <true>
                             <!-- Log In Button -->
-                            <a href="login" class="col-6 text-nowrap text-decoration-none text-light">
+                            <a href="login" class="text-nowrap text-decoration-none text-white">
                                 <p class="my-0">Log In</p>
                             </a>
 
                             <!-- Sign Up Button -->
-                            <a href="signup" class="col-6 text-nowrap text-decoration-none text-light">
+                            <a href="signup" class="text-nowrap text-decoration-none text-white">
                                 <p class="my-0">Sign Up</p>
                             </a>
                         </true>
                         <false>
                             <!-- Profile Button -->
-                            <a href="profile" class="col-6 text-nowrap text-decoration-none text-light">
+                            <a href="profile" class="text-nowrap text-decoration-none text-white">
                                 <p class="my-0">Profile</p>
                             </a>
 
                             <!-- Log Out Button -->
-                            <a href="logout" class="col-6 text-nowrap text-decoration-none text-light">
+                            <a href="logout" class="text-nowrap text-decoration-none text-white">
                                 <p class="my-0">Log Out</p>
                             </a>
                         </false>
                     </check>
-                </div> <!-- Based Navigation END -->
-
-            </div> <!-- Container END -->
-        </div> <!-- Navbar END -->
+                    <!-- Based Navigation END -->
+                </div> <!-- Navbar collapse END -->
+             </nav> <!-- Navbar END -->
+        </div> <!-- Container END -->
     </header> <!-- Header END -->
