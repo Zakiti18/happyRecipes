@@ -20,13 +20,15 @@ This is the sign up page for our 328 project
 
                     <!-- Page Description -->
                     <h1 class="text-center">Sign Up to Keep Track of Your Favorite Recipes!</h1>
-                    <hr><br>
+                    <hr>
+                    <span class="text-danger">* all fields required</span>
+                    <br><br>
 
                     <!-- Top Row -->
                     <div class="row">
                         <!-- Username -->
                         <div class="form-group col-md-6">
-                            <label class="w-75"><strong>Username</strong></label>
+                            <label class="w-75" for="username"><strong>Username</strong></label>
                                 <input type="text" class="form-control"
                                        id="username" name="username" value="{{ @username }}">
                             <!-- JavaScript Validation -->
@@ -39,7 +41,7 @@ This is the sign up page for our 328 project
 
                         <!-- Password -->
                         <div class="form-group col-md-6">
-                            <label class="w-75"><strong>Password</strong></label>
+                            <label class="w-75" for="password"><strong>Password</strong></label>
                                 <input type="password" class="form-control"
                                        id="password" name="password" value="{{ @password }}">
                             <!-- JavaScript Validation -->
@@ -59,7 +61,7 @@ This is the sign up page for our 328 project
                     <div class="row">
                         <!-- First Name -->
                         <div class="form-group col-md-6">
-                            <label class="w-75"><strong>First Name</strong></label>
+                            <label class="w-75" for="fname"><strong>First Name</strong></label>
                             <input type="text" class="form-control"
                                    id="fname" name="fname" value="{{ @fName }}">
                             <!-- JavaScript Validation -->
@@ -72,7 +74,7 @@ This is the sign up page for our 328 project
 
                         <!-- Last Name -->
                         <div class="form-group col-md-6">
-                            <label class="w-75"><strong>Last Name</strong></label>
+                            <label class="w-75" for="lname"><strong>Last Name</strong></label>
                                 <input type="text" class="form-control"
                                        id="lname" name="lname" value="{{ @lName }}">
                             <!-- JavaScript Validation -->
@@ -88,8 +90,8 @@ This is the sign up page for our 328 project
                     <!-- Bottom Row -->
                     <div class="row">
                         <!-- Email -->
-                        <div class="form-group col-md-6">
-                            <label class="w-75"><strong>Email</strong></label>
+                        <div class="form-group col-md-12">
+                            <label class="w-75" for="email"><strong>Email</strong></label>
                                 <input type="email" class="form-control" id="email"
                                        placeholder="someone@domain.com" name="email" value="{{ @email }}">
                             <!-- JavaScript Validation -->
