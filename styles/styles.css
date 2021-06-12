@@ -9,6 +9,7 @@ This is style sheet for our 328 project
 
 body{
     background-color: #F1F0EA;
+    font-family: Georgia, serif!important;
 }
 
 .container{
