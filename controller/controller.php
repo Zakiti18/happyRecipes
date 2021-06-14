@@ -74,7 +74,7 @@ class Controller
     function form()
     {
         // Reinitialize the session array
-        $_SESSION = array();
+        // $_SESSION = array();
 
         // initialize all variables to store user input
         $userFName = "";
@@ -153,7 +153,7 @@ class Controller
                     $this->_f3->set('errors["City"]', 'Please enter a valid City');
                 }
             } else {
-                $_SESSION['City'] = $userCity;
+                $_SESSION['city'] = $userCity;
             }
 
             // State
@@ -166,7 +166,7 @@ class Controller
                     $this->_f3->set('errors["State"]', 'Please enter a valid State');
                 }
             } else {
-                $_SESSION['State'] = $userState;
+                $_SESSION['state'] = $userState;
             }
 
             // Zip
@@ -179,7 +179,7 @@ class Controller
                     $this->_f3->set('errors["Zip"]', 'Please enter a valid Zip Code');
                 }
             } else {
-                $_SESSION['Zip'] = $userZip;
+                $_SESSION['zip'] = $userZip;
             }
 
             // Country
@@ -192,7 +192,7 @@ class Controller
                     $this->_f3->set('errors["Country"]', 'Please enter a valid Country');
                 }
             } else {
-                $_SESSION['Country'] = $userCountry;
+                $_SESSION['country'] = $userCountry;
             }
 
             $_SESSION['fCat'] = $_POST['fCat'];

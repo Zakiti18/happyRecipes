@@ -17,10 +17,8 @@ This is the profile page for our 328 project
         <div class="jumbotron pt-2 px-3">
 
             <!-- Title and Link Home -->
-            <div class="d-flex justify-content-between">
-                <h1 class="colored">Profile Page</h1>
-                <a href="{{@BASE}}" class="text-decoration-none category">Home</a>
-            </div> <!-- Title and Link Home END -->
+                <br><h1 class="colored">Profile Page</h1>
+             <!-- Title and Link Home END -->
             <hr>
 
             <!-- Display is changed depending on whether the user is an admin or not -->
@@ -63,32 +61,42 @@ This is the profile page for our 328 project
                 <false>
                     <div class="text-center mb-3">
                         <h4>Welcome back {{ @SESSION.user->getFName() }}!</h4>
-                        <p>Here are your favorite recipes!</p>
+
                     </div>
 
                     <div class="text-center">
-                        <repeat group="{{@recipes}}" value="{{@recipe}}">
-                            <!-- Card -->
-                            <div class="card text-center w-25 mx-1 my-2 d-inline-flex">
-                                <img class="card-img-top w-100 h-100" src="{{@recipe->getRecipeImage()}}"
-                                     alt="{{@recipe->getName()}}">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{@recipe->getName()}}</h5>
-                                    <p class="card-text">
-                                        Takes {{@recipe->getCookTime()}} minutes to make!<br>
-                                        Feeds {{@recipe->getFeeds()}} mouth(s)!<br>
-                                        Check it out!
-                                    </p>
-                                    <a href="{{@recipe->getCategory()}}"
-                                       class="btn btn-primary d-inline">See the Recipe!</a>
+                        <!-- Check if favorite recipes are 0 -->
+                        <check if="{{ @GLOBALS['dataLayer']->getFavoritesCode(@SESSION.user) == null }}">
+                            <true>
+                                <p>Head to the categories page and add favorite recipes!</p>
+                            </true>
 
-                                    <!--<form method="post" action="#" class="d-inline">-->
-                                        <button type="submit"
-                                                class="btn btn-sm btn-outline-danger">Unfavorite</button>
-                                    <!--</form>-->
-                                </div>
-                            </div> <!-- Card END -->
-                        </repeat>
+                            <false>
+                                <p>Here are your favorite recipes!</p>
+                                <repeat group="{{@recipes}}" value="{{@recipe}}">
+                                    <!-- Card -->
+                                    <div class="card text-center mx-1 my-2 d-inline-flex" id="profileCard">
+                                        <img class="card-img-top w-100 h-100" src="{{@recipe->getRecipeImage()}}"
+                                             alt="{{@recipe->getName()}}">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{@recipe->getName()}}</h5>
+                                            <p class="card-text">
+                                                Takes {{@recipe->getCookTime()}} minutes to make!<br>
+                                                Feeds {{@recipe->getFeeds()}} mouth(s)!<br>
+                                                Check it out!
+                                            </p>
+                                            <a href="{{@recipe->getCategory()}}"
+                                               class="btn btn-primary d-inline">See the Recipe!</a>
+
+                                            <!--<form method="post" action="#" class="d-inline">-->
+                                                <button type="submit"
+                                                        class="btn btn-sm btn-outline-danger">Unfavorite</button>
+                                            <!--</form>-->
+                                        </div>
+                                    </div> <!-- Card END -->
+                                </repeat>
+                            </false> <!--end of false check -->
+                        </check> <!-- end of check -->
                     </div>
                 </false>
             </check> <!-- Admin Check END -->

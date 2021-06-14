@@ -111,6 +111,10 @@ footer p {
     background-color: #FFC738!important;
 }
 
+#navbarNavAltMarkup {
+    font-size: 1.3rem;
+}
+
 /* aligns links in nav bar */
 @media (min-width: 992px){
     .navbar-expand-lg .navbar-collapse {
@@ -121,6 +125,12 @@ footer p {
         justify-content: space-around;
         flex-direction: row;
         flex-wrap: nowrap;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    #profileCard{
+        width: 25%;
     }
 }
 
